@@ -65,9 +65,7 @@
 
 % Uncomment to use a custom abstract dummy text
 \abstractdummy{
-	\begin{abstract}
-		Please use no more than 300 words and avoid mathematics or complex script.
-	\end{abstract}
+    \input{sections/abstract.tex}
 }
 
 
@@ -79,14 +77,12 @@
     \frontmatterCS
     % Monograph authors use this front matter 
     %\frontmatterMonograph 
- 
-   % Optional dedication
-   \dedication{Dedicated to all hard-working \\doctoral students at Uppsala University}
+    
+    % Optional dedication
+   \input{sections/dedication.tex}
  
     % Environment used to create a list of papers
-    \begin{listofpapers}
-    	\item A Paper Discussed in this Thesis \label{apaperlabel}
-    \end{listofpapers}
+    \input{sections/papers.tex}
     
     
     \begingroup
@@ -101,21 +97,19 @@
     \listoffigures
 
 \mainmatter
-    % This includes the "Instruction", "Problem and Solutions" and "Example" files. After reading it, remove it from Thesis.tex. 
-    \input{Example/Instruction.tex}
-    \input{Example/ProblemsAndSolutions}
-    \input{Example/Example.tex}
-    
-    % Include your chapters here.
-    %\input{Introduction.tex}
-
+    \input{sections/introduction}
+    \input{sections/relatedWork}
+    \input{sections/dataCollection}
+    \input{sections/analysis}
+    \input{sections/conclusion}
+    \input{sections/futureWork}
 
 \backmatter
     % References
     % No restriction is set to the reference styles
     % Save your references in References.bib
     \nocite{*} % Remove this for your own citations
-    \bibliographystyle{plain}
+    \bibliographystyle{IEEEtran}
     \bibliography{References}
 
 \end{document}
