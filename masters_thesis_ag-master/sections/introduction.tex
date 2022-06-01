@@ -1,0 +1,79 @@
+\section{Introduction}
+
+\begin{center}
+  \textit{If you can’t measure it, you can’t improve it. — Peter Drucker}
+\end{center}
+
+\noindent A key component of any process is the ability to measure aspects of it. These measured aspects provide important data-points which can be used to (amongst others):
+\begin{itemize}
+  \item track and locate bottlenecks in the process
+  \item identify failures (at a management or procedure level)
+  \item locate \textit{bad patterns}
+  \item finally (perhaps most importantly) to gain a deeper understanding into the process being observed.
+\end{itemize}
+
+\noindent This is no different within the Software Development Life Cycle process, where the productivity of a developer directly affects
+\begin{itemize}
+  \item developer happiness
+  \item the cost of production
+  \item the ability to predict and estimate timelines accurately
+\end{itemize}
+It is important to note that these measurements are important to both those within I.T and the larger business-stakeholders in a company.
+Therefore the output must be easily understood, yet informative enough for those internal and external to the I.T space\\
+
+\noindent The end-product would be a Web Application, which takes in the various metrics exposed, runs it through the algorithm, which then determines a collated \textit{performance score}, displayed to the end-user.
+
+
+\subsection{Background}
+This Masters thesis was conducted at Department of Information Technology at Uppsala University. The project was undertaken in partnership with Allan Gray[\ref{sec:allan_gray}].
+
+\subsubsection{Allan Gray}
+\label{sec:allan_gray}
+Allan Gray\cite{allan_gray} is a Africa's largest privately-owned and independent investment management company, with a primary focus on unit trusts.
+Allan Gray hosts over 1200 employees, spread over four cities in South Africa. From these 1200, approximately 10\% are found within the I.T space,
+and within the IT space at least 90\% are considered to be within a developer role.
+
+\subsection{The need for definition}
+A major contribution to the difficulty of this problem is the lack of a canonical definition of \emph{productivity} in the context of a developer.
+Traditionally \emph{productivity} is a measurement often expressed as \emph{a ratio of an aggregate output to a single input or an aggregate input used in a production process, i.e. output per unit of input, typically over a specific period of time} \cite{kaliski_2001}.
+
+While this definition works well enough in a traditional manufacturing business space, it does not directly map into the the Software Development space.
+
+In the traditional manufacturing process, a factory produces a mass-amount of near identical products, which follows a near identical process, and therefore can easily be measured using well-defined metrics.
+An illustration of this can be a bottled-water production plant, where measuring productivity of the worker who labels the bottles, requires measuring the amount of unlabeled bottles which enters a station (input) vs the amount of labeled bottles exiting the station (output), over a given period of time.\\
+\noindent In contrast when looking at a Software Development process, the delivered software (output) differs vastly from feature-to-feature and requirement-to-requirement, thus leading to large variances in the amount of time to go from input-to-output.
+Therefore using a set single standard-set of base-line metrics (e.g. software produced vs hours worked) does not truly reflect the dynamic context (nor the true effort) of the production process.
+
+\subsection{Goal}
+\noindent The \textbf{goal} of this project is to design an algorithm which can be used to easily calculate an Productivity score for a given Developer.
+This algorithm will rely on:
+\begin{itemize}
+  \item a canonical definition of \textit{Productivity} and \textit{Impact} based on research
+  \item metrics available to Allan Gray[\ref{sec:allan_gray}]
+\end{itemize}
+
+\subsection{Process}
+This project will be split into two major components
+\begin{itemize}
+  \item defining an algorithm to determine developer productivity
+  \item building an application to utilize the algorithm to calculate and display the score to the end-user
+\end{itemize}
+
+\subsubsection{Determining the algortihm}
+This portion of the project relies heavily on research, a literature review will be required to identify current best practices, designs, architectures, implementations, pitfalls and measure-able metrics.
+In addition, interviews with members of the Allan Gray team will be conducted to get a better understanding of the current process and limitations. These interviews will also help identify key-metrics which are important to Allan Gray.
+
+Analysis will be primarily quantitative using the identified metrics from the currently implemented tooling. A qualitative analysis will also be conducted via interviews. These interviews will focus on the cultural aspect of
+Allan Gray (and assist in determining a definition of impact and performance specifically within the Allan Gray space).
+
+The information gathered above will be used to determine an algorithm which given the determined metrics and context is able to provide a score based on the defined definition of productivity.
+
+\subsubsection{Building the application}
+This portion of the project will utilize the existing Allan Gray tech-stack to build and deploy a web-based application.
+This application will utilize a golang backend [TODO ADD CITATION] which will read in the various metrics over a RESTful [TODO ADD CITATION] API.
+It will then utilize the defined algorithm to calculate the required score from the given data.
+
+The frontend component of the application will utilize TypeScript and ReactJS to produce a web-application interface. The design and interface will follow current best-practices making the application easy to use and understand for I.T and Business users.
+
+Authentication and Authorization will be handled via ActiveDirectory [TODO ADD CITATION] tokens and user-groups to ensure that the sensitive data made accessible to the application is only accessible to the relevant users.
+The entire application will then be built and containerized (using Docker[TODO ADD CITATION]) and deployed using Kubernetes [TODO ADD CITATION] objects to run in a Kubernetes cluster.
