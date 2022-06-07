@@ -1,5 +1,40 @@
 \part{Methodology and System Architecture}
-\chapter{Experimentation Methodology}
+
+This chapter aims to clearly explain the research process used to analyze the problem and potential solutions.
+Additionally it expands on the experimentation process undertaken in detail.
+
+\chapter{Methodology}
+
+\section{Research and Investigation}
+
+A broad investigation - in the form of a literature-review was undertaken - to find, understand, compare and document the various cloud container platforms which AWS currently offers.
+Additionally, interviews were performed at \textit{Allan Gray} focusing on tooling, architecture and deployment process.
 
 \chapter{System Design and Architecture}
-\section{Environment}
+
+Each solution was evaluated in a controlled AWS VPC in the af-south-1 region, spread across three AZs.
+The required cloud infrastructure was be deployed using \textit{Terraform} to ensure IaaC principles are followed (and to maintain the \emph{correctness} of the testing environments).
+Solutions which are not serverless in nature were run on distinct dedicated isolated AWS EC2 instances (Virtual Machines). This ensured that each solution ran independently of one another
+Solutions which are serverless in nature automatically achieved the same goal.
+
+Results were written and stored on AWS S3 Buckets.
+Microsoft SQL Databases were used as part of the application benchmark process (existing on-premise instances and a new AWS RDS Instance) with services targeting specific distinct tables per solution.
+
+\chapter{Experimentation}
+
+Each viable option was evaluated in terms of the following metrics:
+\section{Cost}
+Cost was measured in US Dollars using AWS's built in Cloud Costing tool TODO-ref, matched using tags.
+Additionally, forecasted cost was measured using AWS's Costing Calulator tool TODO-ref.
+
+\section{Resilience and Reliability}
+Resilience and Reliability were measured using \textit{time-to-recovery} when performing standard Chaos Monkey TODO-ref processes for container workloads.
+These included evaluating the solution's ability to handle sudden scaling-in of container-workloads (that is to route network traffic to healthy replicas or respond to an unhealthy container by starting a new replica)
+and actual deletion of container-workloads at a host level (that is stopping the container at a host-level and observing the solution's ability to recover).
+
+\section{Performance and Latency}
+Performance and Latency were measured using two forms of benchmarking, the first being a custom-built application benchmark, and the second using industry standard benchmark tooling using phoronix-test-suite focusing on .....
+
+\section{Ease-of-Use}
+Ease-of-Use (being a highly subjective metric) was evaluated in terms of complexity to configure the solution environment, additional tooling required to deploy to said environment,
+and finally the amount of changes required to deploy a container workload using this solution, with unit \textit{time} being the unit of comparison.
