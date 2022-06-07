@@ -25,22 +25,12 @@ Allan Gray\cite{allan_gray} is a Africa's largest privately-owned and independen
 Allan Gray hosts over 1200 employees, spread over four cities in South Africa. From these 1200, approximately 10\% are found within the I.T space,
 and within the IT space at least 90\% are considered to be within a developer role.
 
-\subsection{Why Allan Gray?}
 \noindent Allan Gray is no exception to the aformentioned scenario. Allan Gray has been running container workloads in production for over five years,
 running on the Kubernetes platform, on an on-premise data-center on virtual Linux machines.
 Allan Gray is currently undertaking a cloud-migration, and is looking to shift their container-workloads to the cloud (with AWS being their chosen cloud platform).
 
-\section{Why AWS?}
-Whilst it seems that experimenting only on AWS severely restricts the generality of this investigation, in reality the offerings by the other two major cloud providers
-(being Google Cloud Platform and Microsoft Azure Cloud respectively), match the Cloud Orchestrated Container offerings by AWS at a feature-parity level \cite{contaier_workloads}.
-Additionally, AWS holds more that 33\% of the cloud market (as of Q4 2021) \cite{aws_cloud_share},
-and is considered to be the cloud-provider of choice for the the largest tech companies in the world today \cite{aws_users}.
-
-Therefore the results of this investigation (and recommendations) would (in theory) apply to the GCP and Azure cloud as well.
-
-
 \chapter{Goal}
-\noindent The \textbf{goal} of this project is to investigate and compare cloud container platforms, in terms of:
+\noindent The \textbf{goal} of this project is to investigate and compare cloud container orchestration platforms, in terms of:
 \begin{itemize}
   \item ease of adoption and configuration
   \item deployment process
@@ -82,6 +72,7 @@ This task focused on defining and measuring the differences between each viable 
 This task focused on using the results of the above research and experimentation to design, implement and test a solution at Allan Gray.
 
 \section{Methods}
+% TODO - might need to remove this 
 A literature review was completed in order to identify current industry best practices, designs, architectures, implementations, and
 pitfalls of the various cloud-orchestrations platforms options available .
 In addition, interviews with members of the \textit{Allan Gray} team were conducted to get a better understanding of the current processes and limitations.
@@ -93,6 +84,16 @@ However a \textit{qualitative} analysis will also be presented, with data gather
 \chapter{Delimitations}
 This project is restricted to:
 \begin{itemize}
-  \item migrating container workloads (not other services/workloads)
+  \item migrating container workloads (not other services/workloads) to a cloud manager provider
   \item the Amazon Web Services Cloud provider
 \end{itemize}
+
+\section{Justifying the choice of focusing solely on AWS}
+Whilst it seems that experimenting only on AWS severely restricts the generality of this investigation, in reality the offerings by the other two major cloud providers
+(being Google Cloud Platform and Microsoft Azure Cloud respectively), match the Cloud Orchestrated Container offerings by AWS at a feature-parity level \cite{contaier_workloads}.
+Additionally, AWS holds more that 33\% of the cloud market (as of Q4 2021) \cite{aws_cloud_share},
+and is considered to be the cloud-provider of choice for the the largest tech companies in the world today \cite{aws_users}.
+
+Therefore the results of this investigation (and recommendations) would (in theory) apply to the GCP and Azure cloud as well.
+
+\chapter{Related Work}
