@@ -8,32 +8,64 @@ Additionally it expands on the experimentation process undertaken in detail.
 \section{Research and Investigation}
 
 A broad investigation - in the form of a literature-review was undertaken - to find, understand, compare and document the various cloud container platforms which AWS currently offers.
-Additionally, interviews were performed at \textit{Allan Gray} focusing on tooling, architecture and deployment process.
+Additionally, interviews were performed at \emph{Allan Gray} focusing on tooling, architecture and deployment process.
 
 \chapter{System Design and Architecture}
 
-Each solution was evaluated in a controlled AWS VPC in the af-south-1 region, spread across three AZs.
-The required cloud infrastructure was be deployed using \textit{Terraform} to ensure IaaC principles are followed (and to maintain the \emph{correctness} of the testing environments).
-Solutions which are not serverless in nature were run on distinct dedicated isolated AWS EC2 instances (Virtual Machines). This ensured that each solution ran independently of one another
+Each solution was evaluated in a controlled AWS \emph{VPC} in the af-south-1 region, spread across three \emph{AZs}.
+The required cloud infrastructure was be deployed using \emph{Terraform} to ensure \emph{IaaC} principles are followed (and to maintain the \emph{correctness} of the testing environments).
+Solutions which are not \emph{serverless} in nature were run on distinct dedicated isolated AWS EC2 instances (Virtual Machines) of type \emph{m5.2xlarge} TODO-ref, TODO-addSpec. This ensured that each solution ran independently of one another
 Solutions which are serverless in nature automatically achieved the same goal.
 
-Results were written and stored on AWS S3 Buckets.
-Microsoft SQL Databases were used as part of the application benchmark process (existing on-premise instances and a new AWS RDS Instance) with services targeting specific distinct tables per solution.
+Benchmark results of \emph{ephemeral} objects were written and stored on AWS \emph{S3} Buckets.
+\emph{MSSQL} Databases were used as part of the application benchmark process, as this is the Database Engine of choice for \emph{Allan Gray}.
+Existing on-premise instances were initially used as part of the the benchmarking process, however to remove network hops as a variable factor,
+a distinct AWS \emph{RDS} \emph{MSSQL} Instance was created, with a new set of benchmark runs being performed.
+Each solution targeted distinct tables so as to keep the environments distinct, even at a data level.
+
+To create a baseline, all benchmarks were performed against an existing on-premise \emph{VMWare} cloud of \emph{VMs} running \emph{RKE} TODO-addSpec (\emph{Allan Gray}'s existing container-platform)
+
+
+Required code to recreate the testing environment can be found in TODO-addAppendix as \emph{Terraform} code.
+\emph{Docker} image definitions can be found in TODO-addAppendix.
+\emph{AMI} build-scripts can be found as \emph{packer} code in TODO-addAppendix.
+Additionally all other tooling or applications used can be found on GitHub at TODO-addSite.
 
 \chapter{Experimentation}
 
 Each viable option was evaluated in terms of the following metrics:
 \section{Cost}
-Cost was measured in US Dollars using AWS's built in Cloud Costing tool TODO-ref, matched using tags.
-Additionally, forecasted cost was measured using AWS's Costing Calulator tool TODO-ref.
+Cost was measured in US Dollars using AWS's built in Cloud Costing tool TODO-ref, with each system matched to cost using identification tags.
+Additionally, forecasted cost was predicted using AWS's Costing Calulator tool TODO-ref.
 
 \section{Resilience and Reliability}
-Resilience and Reliability were measured using \textit{time-to-recovery} when performing standard Chaos Monkey TODO-ref processes for container workloads.
-These included evaluating the solution's ability to handle sudden scaling-in of container-workloads (that is to route network traffic to healthy replicas or respond to an unhealthy container by starting a new replica)
-and actual deletion of container-workloads at a host level (that is stopping the container at a host-level and observing the solution's ability to recover).
+Resilience and Reliability were measured using \textit{TTR} when performing standard Chaos Monkey TODO-ref processes for container workloads.
+These included evaluating the solution's ability to handle sudden scaling-in of container-workloads (that is to route network traffic to healthy replicas or respond to an unhealthy container by starting a new replica),
+and actual deletion of container-workloads at a host level (that is stopping the container at a host-level and observing the solution's ability to recover) where possible.
 
 \section{Performance and Latency}
-Performance and Latency were measured using two forms of benchmarking, the first being a custom-built application benchmark, and the second using industry standard benchmark tooling using phoronix-test-suite focusing on .....
+Performance and Latency were measured using two forms of benchmarking, the first following industry standard performance benchmarking using the phoronix-test-suite TODO-ref tool.
+With the second being a custom-built application benchmark, which was able to focus on \emph{CRUD} based activities.
+
+
+
+\subsection{phoronix-test-suite}
+The phoronix-test-suite
+
+\subsection{tool-container-benchmark}
+\textit{tool-container-benchmark} is a custom built open-source benchmarking tool. This tool performs basic \emph{CRUD} operations against a Database of choice,
+which mimics a portion of a typical enterprise workload TODO-addRef. The tool starts of by clearing all projects in a specific table, creates a basic data-set within the table,
+and performs a set of randomly chosen \textit{events} against a random project. An event is defined to be either a creation, update or delete operation.
+The tool is written in \emph{go} TODO-addRef and was natively compiled for the chosen container \emph{OS}.
+
+Allowed configuration:
+\begin{enumerate}
+  \item Number of Events - this allows a user to define how many events should be run per benchmark run
+  \item Number of Projects - this allows a user to define how many projects should be created per benchmark run (which creates an upper-bound of events per project)
+  \item IsLambda - this configures if the benchmark should run in a server or serverless mode
+\end{enumerate}
+
+Tooling code can be found on GitHub at TODO-addSite.
 
 \section{Ease-of-Use}
 Ease-of-Use (being a highly subjective metric) was evaluated in terms of complexity to configure the solution environment, additional tooling required to deploy to said environment,
