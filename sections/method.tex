@@ -14,25 +14,24 @@ Additionally, interviews were performed at \emph{Allan Gray} focusing on tooling
 
 Each solution was evaluated in a controlled AWS \emph{VPC} in the af-south-1 region, spread across three \emph{AZs}.
 The required cloud infrastructure was be deployed using \emph{Terraform} to ensure \emph{IaaC} principles are followed (and to maintain the \emph{correctness} of the testing environments).
-Solutions which are not \emph{serverless} in nature were run on distinct dedicated isolated AWS EC2 instances (Virtual Machines) of type \emph{m5.2xlarge} TODO-ref, TODO-addSpec. This ensured that each solution ran independently of one another
+Solutions which are not \emph{serverless} in nature were run on distinct dedicated isolated AWS EC2 instances (Virtual Machines) of type \emph{m5.2xlarge} TODO-ref, TODO-addSpec. This ensured that each solution ran independently of one another.
 Solutions which are serverless in nature automatically achieved the same goal.
 
 Benchmark results of \emph{ephemeral} objects were written and stored on AWS \emph{S3} Buckets.
+
 \emph{MSSQL} Databases were used as part of the application benchmark process, as this is the Database Engine of choice for \emph{Allan Gray}.
 Existing on-premise instances were initially used as part of the the benchmarking process, however to remove network hops as a variable factor,
 a distinct AWS \emph{RDS} \emph{MSSQL} Instance was created, with a new set of benchmark runs being performed.
 Each solution targeted distinct tables so as to keep the environments distinct, even at a data level.
 
-To create a baseline, all benchmarks were performed against an existing on-premise \emph{VMWare} cloud of \emph{VMs} running \emph{RKE} TODO-addSpec (\emph{Allan Gray}'s existing container-platform)
+To create a baseline, all benchmarks were performed against an existing on-premise \emph{VMWare} cloud of \emph{VMs} running \emph{RKE} TODO-addSpec (\emph{Allan Gray}'s existing container-platform) \\
 
-
-Required code to recreate the testing environment can be found in TODO-addAppendix as \emph{Terraform} code.
+\noindent Required code to recreate the testing environment can be found in TODO-addAppendix as \emph{Terraform} code.
 \emph{Docker} image definitions can be found in TODO-addAppendix.
 \emph{AMI} build-scripts can be found as \emph{packer} code in TODO-addAppendix.
 Additionally all other tooling or applications used can be found on GitHub at TODO-addSite.
 
 \chapter{Experimentation}
-
 Each viable option was evaluated in terms of the following metrics:
 \section{Cost}
 Cost was measured in US Dollars using AWS's built in Cloud Costing tool TODO-ref, with each system matched to cost using identification tags.
@@ -47,10 +46,26 @@ and actual deletion of container-workloads at a host level (that is stopping the
 Performance and Latency were measured using two forms of benchmarking, the first following industry standard performance benchmarking using the phoronix-test-suite TODO-ref tool.
 With the second being a custom-built application benchmark, which was able to focus on \emph{CRUD} based activities.
 
-
-
 \subsection{phoronix-test-suite}
-The phoronix-test-suite
+The phoronix-test-suite is a high-customizable \emph{OSS} tool which acts as a wrapper to run various open-source benchmarking suites hosted by \emph{OpenBenchmarking.org} TODO-addRef.
+A custom test-suite was created which targets specific aspects of a container-platform which is relevant to this project (and builds upon a previous testing methodlogy used by TODO-addRef).
+Rhe selected tests are:
+\begin{itemize}
+  \item compress-7zip - this runs a set of 7zip compressions and decompressions against a 10GB file using \emph{7-zip}'s built in \emph{LZMA} benchmark.
+        The benchmark primarily affects CPU and is measured in \emph{MIPS}.
+  \item mbw - TODO
+  \item ramspeed - TODO
+  \item fs-mark - TODO
+  \item redis - TODO
+  \item m-queens - TODO
+\end{itemize}
+In addition to the above, a \emph{sysbench} TODO-addRef PrimeSieve benchmark was run for each solution, as an additional CPU specific benchmark.
+
+
+The required tooling and configuration was then added to a Docker image built upon Ubuntu 20.04 TODO-addRef, which each solution then ran as a container.
+Results were stored to \emph{S3}.
+
+Tooling code is available on GitHub at TODO-addSite.
 
 \subsection{tool-container-benchmark}
 \textit{tool-container-benchmark} is a custom built open-source benchmarking tool. This tool performs basic \emph{CRUD} operations against a Database of choice,
@@ -59,13 +74,13 @@ and performs a set of randomly chosen \textit{events} against a random project. 
 The tool is written in \emph{go} TODO-addRef and was natively compiled for the chosen container \emph{OS}.
 
 Allowed configuration:
-\begin{enumerate}
+\begin{itemize}
   \item Number of Events - this allows a user to define how many events should be run per benchmark run
   \item Number of Projects - this allows a user to define how many projects should be created per benchmark run (which creates an upper-bound of events per project)
   \item IsLambda - this configures if the benchmark should run in a server or serverless mode
-\end{enumerate}
+\end{itemize}
 
-Tooling code can be found on GitHub at TODO-addSite.
+Tooling code is available on GitHub at TODO-addSite.
 
 \section{Ease-of-Use}
 Ease-of-Use (being a highly subjective metric) was evaluated in terms of complexity to configure the solution environment, additional tooling required to deploy to said environment,
