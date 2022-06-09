@@ -1,8 +1,27 @@
 \part{Discussion and Conclusion}
 
-This chapter discusses the aforementioned results in context of the posed problem.
-Additionally a concluding solution is presented.
+This chapter evaluates the aforementioned results in context of the posed problem.
+Additionally a concluding solution is presented, with potential future-work mentioned.
 
 \chapter{Discussion}
+
+\section{Performance and Latency}
+\subsection{CPU}
+Table TODO-addRef illustrates a clear distinction in performance between the ECS and EKS solutions. with the EKS solutions providing closer performance to our baseline.
+Additionally we see that the serverless solutions (those which run on Fargate) under-perform when compared to the EC2 counter-parts even when utilizing the same platform.
+
+Table TODO-addRef further illustrates that EKS performs measurably better than ECS when running the 7-zip CPU intensive benchmark.
+Furthermore Fargate workloads once again lags behind the EC2 workloads
+
+
+\section{Ease-of-Use}
+
+\section{Cost}
+Table TODO-addRef illustrates the vast difference in running our two distinct benchmarking tools
+
+\section{Resilience and Reliability}
+
+
 \chapter{Conclusion}
+
 \chapter{Future Work}
