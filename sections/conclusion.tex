@@ -1,7 +1,7 @@
 \part{Discussion and Conclusion}
 
 This chapter evaluates the aforementioned results in context of the posed problem.
-Additionally a concluding solution is presented, with potential future-work mentioned.
+Additionally a concluding platform is presented, with potential future-work mentioned.
 
 \chapter{Discussion}
 
@@ -12,10 +12,22 @@ Additionally a concluding solution is presented, with potential future-work ment
 
 \section{Resilience and Reliability}
 
-\chapter{Conclusion}
-Based on the experimentation results presented and aforementioned argued points, the following conclusions are be made
+\chapter{Conclusion and Future Work}
+
+This project aimed to compare \emph{Cloud Container Orchestration} platform in respect to
 \begin{itemize}
-  \item selection of container-orchestration solution will have a minor impact on performance for certain workloads
+  \item ease of adoption and configuration
+  \item deployment process
+  \item restrictions and limitations
+  \item performance
+  \item cost impacts
+  \item reliability and resilience
+  \item security
+\end{itemize}
+
+Based on the experimentation results presented and aforementioned argued points, the following conclusions are made
+\begin{itemize}
+  \item selection of container-orchestration platform will have a minor impact on performance for certain workloads
         \begin{itemize}
           \item \textit{EKS} running workloads generally performed closer to the benchmark cluster across the widest array of tests,
                 with both \textit{ECS}, followed by \textit{Lambda}, lagging constantly behind, with low, but measurable performance impact.
@@ -24,22 +36,37 @@ Based on the experimentation results presented and aforementioned argued points,
         \begin{itemize}
           \item \textit{EC2} based workloads consistently performed closer (or on occasion out-performed) our benchmark cluster,
                 whilst both \textit{Serverless} options (\textit{Fargate} and \textit{Lambda} respectively) producing lower performance,
-                even under the same orchestration solution
+                even under the same orchestration platform
         \end{itemize}
-  \item Network latency does not mask the loss in (measurable) performance between the various orchestration solutions or underlying server-architecture
+  \item Network latency does not mask the loss in (measurable) performance between the various orchestration platforms or underlying server-architecture
         \begin{itemize}
-          \item Benchmarks showed a consistent degradation in performance between the tested solutions, irrespective of network latency.
+          \item Benchmarks showed a consistent degradation in performance between the tested platforms, irrespective of network latency.
         \end{itemize}
   \item Whilst \textit{Serverless Functions} may have the ability to run container-based workloads,
-        the numerous limitations of attempting to run standard container-workloads on a
-        \textit{Serverless} architectural design, makes it an inviable replacement for an existing container-orchestration solution
-  \item \textit{Cloud-Native} container orchestration solutions generally offer a more \emph{consistent} experience
+        the numerous limitations of attempting to run standard \textit{container-workloads} on a
+        \textit{Serverless} architectural design, makes it an inviable replacement for an existing container-orchestration platform
+  \item \textit{Cloud-Native} container orchestration platforms generally offer a more \emph{consistent} experience
         (in context to the rest of the chosen \textit{cloud} provider's environment), with simpler tie-ins to other offered services, and marginally lower costs.
         These \emph{ease-of-use} factors are off-set by a measurable loss in performance, marginal (yet observable) lower level of resiliency, provider \textit{lock-in},
         and limited support.
-  \item Managed Cloud \textit{Kubernetes} solutions benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} solution
+  \item Managed Cloud \textit{Kubernetes} platforms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
         that a \textit{k8s} cluster offers (this include that existing tooling would require little-to-no changes as part of the migration process),
         at the cost of complexity (in terms of tie-ins to other cloud offered services) and monthly costing.
 \end{itemize}
 
-\chapter{Future Work}
+\section{Future Work}
+In respect of continuing research under this topic, the following points should be considered:
+\begin{itemize}
+  \item This project compared \emph{Cloud Container Orchestration} platforms under the lense of migration,
+        an interesting lense would be a comparison under the lense of a fresh technological adoption of \textit{containerization}
+        (as this is the state most start-ups and newly founded enterprises find themselves in)
+  \item \textit{AWS} and its selected representations of the various available technologies were used for experimentation in this project
+        under the premise that the other cloud-providers offer services which are identical at a feature-parity level.
+        Verification of this claim (running the various experiments across other cloud-providers) could illustrate hidden implementation costs
+        (in terms of the previously mentioned comparison topics) may surface
+  \item Due to the current restrictions of running \textit{container workloads} as \textit{Serverless Functions},
+        all of the container-specific performance benchmarks were unable to complete successfully.
+        This, therefore, restricted the ability to compare the \textit{Serverless} offering \emph{like-for-like} with its other counter-parts.
+        Researching (or creating) benchmarking tools which are able to successfully run on \textit{Serverless} and \textit{container} workloads alike,
+        would provide a deeper insight into the performance cost of \textit{Serverless Function} architecture.
+\end{itemize}
