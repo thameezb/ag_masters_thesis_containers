@@ -33,18 +33,10 @@ Additionally all other tooling or applications used can be found on GitHub at TO
 
 \chapter{Experimentation}
 Each viable option was evaluated in terms of the following metrics:
-\section{Cost}
-Cost was measured in US Dollars using AWS's built in Cloud Costing tool TODO-ref, with each system matched to cost using identification tags.
-Additionally, forecasted cost was predicted using AWS's Costing Calulator tool TODO-ref.
-
-\section{Resilience and Reliability}
-Resilience and Reliability were measured using \textit{TTR} when performing standard Chaos Monkey TODO-ref processes for container workloads.
-These included evaluating the solution's ability to handle sudden scaling-in of container-workloads (that is to route network traffic to healthy replicas or respond to an unhealthy container by starting a new replica),
-and actual deletion of container-workloads at a host level (that is stopping the container at a host-level and observing the solution's ability to recover) where possible.
-
 \section{Performance and Latency}
 Performance and Latency were measured using two forms of benchmarking, the first following industry standard performance benchmarking using the phoronix-test-suite TODO-ref tool.
 With the second being a custom-built application benchmark, which was able to focus on \emph{CRUD} based activities.
+Each of these benchmarks were run at least three times, with the outputted results being averaged out.
 
 \subsection{phoronix-test-suite}
 The phoronix-test-suite is a high-customizable \emph{OSS} tool which acts as a wrapper to run various open-source benchmarking suites hosted by \emph{OpenBenchmarking.org} TODO-addRef.
@@ -81,6 +73,15 @@ Allowed configuration:
 \end{itemize}
 
 Tooling code is available on GitHub at TODO-addSite.
+
+\section{Cost}
+Cost was measured in US Dollars using AWS's built in Cloud Costing tool TODO-ref, with each system matched to cost using identification tags.
+Additionally, forecasted cost was predicted using AWS's Costing Calulator tool TODO-ref.
+
+\section{Resilience and Reliability}
+Resilience and Reliability were measured using \textit{TTR} when performing standard Chaos Monkey TODO-ref processes for container workloads.
+These included evaluating the solution's ability to handle sudden scaling-in of container-workloads (that is to route network traffic to healthy replicas or respond to an unhealthy container by starting a new replica),
+and actual deletion of container-workloads at a host level (that is stopping the container at a host-level and observing the solution's ability to recover) where possible.
 
 \section{Ease-of-Use}
 Ease-of-Use (being a highly subjective metric) was evaluated in terms of complexity to configure the solution environment, additional tooling required to deploy to said environment,
