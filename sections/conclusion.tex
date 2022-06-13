@@ -6,22 +6,40 @@ Additionally a concluding solution is presented, with potential future-work ment
 \chapter{Discussion}
 
 \section{Performance and Latency}
-\subsection{CPU}
-Table TODO-addRef illustrates a clear distinction in performance between the ECS and EKS solutions. with the EKS solutions providing closer performance to our baseline.
-Additionally we see that the serverless solutions (those which run on Fargate) under-perform when compared to the EC2 counter-parts even when utilizing the same platform.
-
-Table TODO-addRef further illustrates that EKS performs measurably better than ECS when running the 7-zip CPU intensive benchmark.
-Furthermore Fargate workloads once again lags behind the EC2 workloads
-
-
 \section{Ease-of-Use}
 
 \section{Cost}
-Table TODO-addRef illustrates the vast difference in running our two distinct benchmarking tools
 
 \section{Resilience and Reliability}
 
-
 \chapter{Conclusion}
+Based on the experimentation results presented and aforementioned argued points, the following conclusions are be made
+\begin{itemize}
+  \item selection of container-orchestration solution will have a minor impact on performance for certain workloads
+        \begin{itemize}
+          \item \textit{EKS} running workloads generally performed closer to the benchmark cluster across the widest array of tests,
+                with both \textit{ECS}, followed by \textit{Lambda}, lagging constantly behind, with low, but measurable performance impact.
+        \end{itemize}
+  \item selection of underlying server-architecture has a far more significant impact on performance for most workloads
+        \begin{itemize}
+          \item \textit{EC2} based workloads consistently performed closer (or on occasion out-performed) our benchmark cluster,
+                whilst both \textit{Serverless} options (\textit{Fargate} and \textit{Lambda} respectively) producing lower performance,
+                even under the same orchestration solution
+        \end{itemize}
+  \item Network latency does not mask the loss in (measurable) performance between the various orchestration solutions or underlying server-architecture
+        \begin{itemize}
+          \item Benchmarks showed a consistent degradation in performance between the tested solutions, irrespective of network latency.
+        \end{itemize}
+  \item Whilst \textit{Serverless Functions} may have the ability to run container-based workloads,
+        the numerous limitations of attempting to run standard container-workloads on a
+        \textit{Serverless} architectural design, makes it an inviable replacement for an existing container-orchestration solution
+  \item \textit{Cloud-Native} container orchestration solutions generally offer a more \emph{consistent} experience
+        (in context to the rest of the chosen \textit{cloud} provider's environment), with simpler tie-ins to other offered services, and marginally lower costs.
+        These \emph{ease-of-use} factors are off-set by a measurable loss in performance, marginal (yet observable) lower level of resiliency, provider \textit{lock-in},
+        and limited support.
+  \item Managed Cloud \textit{Kubernetes} solutions benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} solution
+        that a \textit{k8s} cluster offers (this include that existing tooling would require little-to-no changes as part of the migration process),
+        at the cost of complexity (in terms of tie-ins to other cloud offered services) and monthly costing.
+\end{itemize}
 
 \chapter{Future Work}
