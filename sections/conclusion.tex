@@ -1,72 +1,108 @@
-\part{Discussion and Conclusion}
+\part{Discussion, Conclusion and Future Work}
 
 This chapter evaluates the aforementioned results in context of the posed problem.
-Additionally a concluding platform is presented, with potential future-work mentioned.
+Additionally concluding statements are presented, with potential future-work mentioned.
 
 \chapter{Discussion}
 
 \section{Performance and Latency}
-\section{Ease-of-Use}
+Each platform was subjected to an identical set of broad benchmarks aiming to fully test the impact of both
+selection of \emph{orchestration platform} and \emph{underlying architecture} in relation to performance.
+
+\subsection{CPU}
+CPU performance was evaluated by performing CPU intensive tasks
+(such as computing prime numbers using a prime sieve and archive compression/ decompression)
+and measuring the time taken to complete the respective tasks.
+\indent Table TODO-addRef illustrates the amount of time taken to compute primes up to 1000000 across 4 threads.
+The \textit{EC2} instance of the \textit{EKS} cluster outperformed our baseline \textit{RKE} cluster by a margin of ~2\%,
+with the \textit{fargate} solution performing 20 \% slower than our baseline.
+Finally, both the \textit{ECS} backed instances completed the task about 50\% slower than the baseline benchmark.
+
+Table TODO-addRef and TODO-addRef illustrates the a rating in million of instructions per second (MIPS) when performing the 7zip \textit{LZMA} compression and decompression benchmark respectively.
+Under this benchmark, our baseline \textit{RKE} cluster posted the best result, with the two \textit{EC2} backed instances completing around 9\% (\textit{EKS}) and 10 \% (\textit{ECS}) less instructions respectively.
+The two \textit{fargate} backed instances struggled immensely to complete this benchmark,
+with the \textit{EKS} instance completing 80\% less tasks, and the \textit{ECS} instance completing 95 \% less tasks.
+
+\noindent \newline It should be noted that due to runtime and execution time-limit limitations, \textit{Lambda} did not participate in these CPU specific benchmarks.
+
+\subsection{Memory}
+
+\subsection{I/O}
+
+\subsection{General Workloads}
+
+
+As illustrated above, under all of the benchmarks performed, it is noted that \textit{Serverless} (fargate)
+architectures showed significant performance drops when compared to their \textit{Virtual Machine} (EC2) counterparts,
+even when managed by the same orchestration platform.
+A potential reasoning for this would be the extra network-hops required for these \textit{Serverless}
+instances to communicate with the platform managing-agents and other resources within a customer \textit{VPC}.
+Additionally, \textit{Serverless} platforms run on shared tenant hardware managed by the cloud provider,
+which would in turn be stricter on the resource usage per container instance.
+
+
 
 \section{Cost}
 
+\section{Ease-of-Use}
+
 \section{Resilience and Reliability}
+
 
 \chapter{Conclusion and Future Work}
 
-This project aimed to compare \emph{Cloud Container Orchestration} platform in respect to
+This project aimed to compare \emph{Cloud Container Orchestration} platforms in respect to
 \begin{itemize}
-  \item ease of adoption and configuration
-  \item deployment process
-  \item restrictions and limitations
-  \item performance
-  \item cost impacts
-  \item reliability and resilience
-  \item security
+      \item ease of adoption and configuration
+      \item deployment process
+      \item restrictions and limitations
+      \item performance
+      \item cost impacts
+      \item reliability and resilience
 \end{itemize}
 
-Based on the experimentation results presented and aforementioned argued points, the following conclusions are made
+\noindent Based on the experimentation results presented and aforementioned argued points, the following conclusions are made
 \begin{itemize}
-  \item selection of container-orchestration platform will have a minor impact on performance for certain workloads
-        \begin{itemize}
-          \item \textit{EKS} running workloads generally performed closer to the benchmark cluster across the widest array of tests,
-                with both \textit{ECS}, followed by \textit{Lambda}, lagging constantly behind, with low, but measurable performance impact.
-        \end{itemize}
-  \item selection of underlying server-architecture has a far more significant impact on performance for most workloads
-        \begin{itemize}
-          \item \textit{EC2} based workloads consistently performed closer (or on occasion out-performed) our benchmark cluster,
-                whilst both \textit{Serverless} options (\textit{Fargate} and \textit{Lambda} respectively) producing lower performance,
-                even under the same orchestration platform
-        \end{itemize}
-  \item Network latency does not mask the loss in (measurable) performance between the various orchestration platforms or underlying server-architecture
-        \begin{itemize}
-          \item Benchmarks showed a consistent degradation in performance between the tested platforms, irrespective of network latency.
-        \end{itemize}
-  \item Whilst \textit{Serverless Functions} may have the ability to run container-based workloads,
-        the numerous limitations of attempting to run standard \textit{container-workloads} on a
-        \textit{Serverless} architectural design, makes it an inviable replacement for an existing container-orchestration platform
-  \item \textit{Cloud-Native} container orchestration platforms generally offer a more \emph{consistent} experience
-        (in context to the rest of the chosen \textit{cloud} provider's environment), with simpler tie-ins to other offered services, and marginally lower costs.
-        These \emph{ease-of-use} factors are off-set by a measurable loss in performance, marginal (yet observable) lower level of resiliency, provider \textit{lock-in},
-        and limited support.
-  \item Managed Cloud \textit{Kubernetes} platforms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
-        that a \textit{k8s} cluster offers (this include that existing tooling would require little-to-no changes as part of the migration process),
-        at the cost of complexity (in terms of tie-ins to other cloud offered services) and monthly costing.
+      \item selection of container-orchestration platform will have a minor impact on performance for certain workloads
+            \begin{itemize}
+                  \item \textit{EKS} running workloads generally performed closer to the benchmark cluster across the widest array of tests,
+                        with both \textit{ECS}, followed by \textit{Lambda}, lagging constantly behind, with low, but measurable performance impact.
+            \end{itemize}
+      \item selection of underlying server-architecture has a far more significant impact on performance for most workloads
+            \begin{itemize}
+                  \item \textit{EC2} based workloads consistently performed closer (or on occasion out-performed) our benchmark cluster,
+                        whilst both \textit{Serverless} options (\textit{Fargate} and \textit{Lambda} respectively) producing lower performance,
+                        even under the same orchestration platform
+            \end{itemize}
+      \item Network latency does not mask the loss in (measurable) performance between the various orchestration platforms or underlying server-architecture
+            \begin{itemize}
+                  \item Benchmarks showed a consistent degradation in performance between the tested platforms, irrespective of network latency.
+            \end{itemize}
+      \item Whilst \textit{Serverless Functions} may have the ability to run container-based workloads,
+            the numerous limitations of attempting to run standard \textit{container-workloads} on a
+            \textit{Serverless} architectural design, makes it an inviable replacement for an existing container-orchestration platform
+      \item \textit{Cloud-Native} container orchestration platforms generally offer a more \emph{consistent} experience
+            (in context to the rest of the chosen \textit{cloud} provider's environment), with simpler tie-ins to other offered services, and marginally lower costs.
+            These \emph{ease-of-use} factors are off-set by a measurable loss in performance, marginal (yet observable) lower level of resiliency, provider \textit{lock-in},
+            and limited support.
+      \item Managed Cloud \textit{Kubernetes} platforms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
+            that a \textit{k8s} cluster offers (this include that existing tooling would require little-to-no changes as part of the migration process),
+            at the cost of increased complexity (in terms of tie-ins to other cloud offered services) and monthly costing.
 \end{itemize}
 
 \section{Future Work}
 In respect of continuing research under this topic, the following points should be considered:
 \begin{itemize}
-  \item This project compared \emph{Cloud Container Orchestration} platforms under the lense of migration,
-        an interesting lense would be a comparison under the lense of a fresh technological adoption of \textit{containerization}
-        (as this is the state most start-ups and newly founded enterprises find themselves in)
-  \item \textit{AWS} and its selected representations of the various available technologies were used for experimentation in this project
-        under the premise that the other cloud-providers offer services which are identical at a feature-parity level.
-        Verification of this claim (running the various experiments across other cloud-providers) could illustrate hidden implementation costs
-        (in terms of the previously mentioned comparison topics) may surface
-  \item Due to the current restrictions of running \textit{container workloads} as \textit{Serverless Functions},
-        all of the container-specific performance benchmarks were unable to complete successfully.
-        This, therefore, restricted the ability to compare the \textit{Serverless} offering \emph{like-for-like} with its other counter-parts.
-        Researching (or creating) benchmarking tools which are able to successfully run on \textit{Serverless} and \textit{container} workloads alike,
-        would provide a deeper insight into the performance cost of \textit{Serverless Function} architecture.
+      \item This project compared \emph{Cloud Container Orchestration} platforms under the lense of migration,
+            an interesting lense would be a comparison under the lense of a fresh technological adoption of \textit{containerization}
+            (as this is the state most start-ups and newly founded enterprises find themselves in)
+      \item \textit{AWS} and its selected representations of the various available technologies were used for experimentation in this project
+            under the premise that the other cloud-providers offer services which are identical at a feature-parity level.
+            Verification of this claim (running the various experiments across other cloud-providers) could illustrate hidden implementation costs
+            (in terms of the previously mentioned comparison topics) may surface
+      \item Due to the current restrictions of running \textit{container workloads} as \textit{Serverless Functions},
+            all of the container-specific performance benchmarks were unable to complete successfully.
+            This, therefore, restricted the ability to compare the \textit{Serverless} offering \emph{like-for-like} with its other counter-parts.
+            Researching (or creating) benchmarking tools which are able to successfully run on \textit{Serverless} and \textit{container} workloads alike,
+            would provide a deeper insight into the performance cost of \textit{Serverless Function} architecture.
 \end{itemize}
