@@ -101,6 +101,55 @@ which would in turn be stricter on the resource usage per container instance.
 \section{Cost}
 
 \section{Ease-of-Use}
+Each selected platform chosen required an architectural design, object configuration, and environment deployment.
+In addition, once every environment was ready, a deployment process needed to be designed to run our test workloads on the selected platforms.
+
+\subsection{Lambda}
+\textit{Lambda} proved to be the easiest environment to get configured, as there was no real "environment" to create. Being a serverless function,
+to run, it required that a Docker image exist (at this moment restricted to \textit{ECR} repositories only with a max image size of 10GB), environment variables to exist and be configured, max amount of memory
+and a maximum timeout (being less than 15 minutes). This however, came at an extreme cost of flexibility and configuration.
+\textit{Lambdas} being serverless \emph{functions} meant that the expected workload was a function (that is to perform a single task quickly which accepted a specific payload and response),
+meant that most of the selected benchmarks were incompatible with the underlying architecture (due to the max size of 10GB of ephemeral storage available).
+Where it was possible to run, the code had to be altered significantly and cater for specific \textit{Lambda} requirements.
+
+Deployments of workloads occur via the AWS API (using the CLI, Web-Console or other tools like Terraform)
+
+\subsection{ECS}
+\textit{ECS} being a cloud-native \textit{orchestration} proved fairly simple to create and configure.
+A \emph{cluster} needed to be created (which simply required a unique name), with \textit{capacity-providers} being registered to the cluster,
+which can be of type \textit{fargate} or \textit{EC2}.
+This process occurs almost immediately, and workloads can be scheduled once a providers is registered.
+Workloads are defined using a \textit{task-definition}, a JSON file which describes the intended container-workloads.
+Ingress connectivity would be allowed via an external \textit{ALB} which plugs directly into the rest of the architecture.
+
+Running workloads on \textit{fargate}, being \textit{serverless} took little to no effort, as no additional resources needed to be created or configured.
+Running workloads on \textit{EC2}, required far more effort, as \textit{AMI}'s needed to be built with the required \textit{ECS} agent (and dependencies) installed, tested,
+and configured. Additionally \textit{ASG}'s needed to be configured and registered with the \textit{ECS} cluster before workloads would be scheduled.
+
+Deployments of workloads occur via the AWS API (using the CLI, Web-Console or other tools like Terraform)
+
+\subsection{EKS}
+A bare \textit{EKS} required a similar amount of effort to create, configure as \textit{ECS}. A \emph{cluster} is created with basic configuration requirements,
+further add-ons are then installed separately to add additional features required to get a \textit{k8s} cluster working in the cloud environment.
+This process can take up to 30 minutes to complete.
+\textit{Worker} instances are then registered to the \textit{EKS} cluster (either \textit{EC2} or \textit{fargate}).
+Workloads are defined using using standard \textit{k8s} YAML object files (depending on the object type desired).
+For users unfamiliar with the \textit{k8s} architecture, this can be a source of great complexity and new tooling requirements.
+Ingress connectivity requires an additional ingress-controller component to be deployed into the cluster, coupled with an \textit{ALB}.
+
+Running workloads on \textit{fargate} and \textit{EC2} is quite similar in complexity to \textit{ECS}.
+
+Deployments of workloads occur via a specific AWS tool called \emph{eksctl} TODO-addRef or the standard \textit{k8s} deployment tool \emph{kubectl} TODO-addRef
+
+\subsection{Conclusion}
+Table TODO-addRef illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads.
+Table TODO-addRef illustrates the amount of time required to convert an existing container workloads to run on each platform.
+\textit{Serverless} options have the clear advantage in amount of effort required to configure and create (by design), as a user does not need to
+create, manage or maintain underlying \textit{Virtual Machine} instances. The cost of this is potential complexity required to get container workloads running on the
+platform, as seen by \textit{Lambda}.
+\textit{ECS} and \textit{EKS} have a similar cost of effort to configure and create. \textit{ECS} has the advantage when comes to deploying workloads as it requires a
+single JSON task-definition file, whilst a \textit{k8s} deployment may consist of multiple objects each requiring specific configuration.
+This however would not be an issue for existing users of \textit{Kubernetes}.
 
 \section{Resilience and Reliability}
 
