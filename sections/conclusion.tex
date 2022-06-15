@@ -11,36 +11,93 @@ selection of \emph{orchestration platform} and \emph{underlying architecture} in
 
 \subsection{CPU}
 CPU performance was evaluated by performing CPU intensive tasks
-(such as computing prime numbers using a prime sieve and archive compression/ decompression)
+(such as computing prime numbers using a prime sieve and archive compression/decompression)
 and measuring the time taken to complete the respective tasks.
-\indent Table TODO-addRef illustrates the amount of time taken to compute primes up to 1000000 across 4 threads.
-The \textit{EC2} instance of the \textit{EKS} cluster outperformed our baseline \textit{RKE} cluster by a margin of ~2\%,
-with the \textit{fargate} solution performing 20 \% slower than our baseline.
-Finally, both the \textit{ECS} backed instances completed the task about 50\% slower than the baseline benchmark.
+\indent Table TODO-addRef illustrates the amount of time taken (s) to compute primes up to 1000000 across 4 threads.
+The \textit{EC2} instance of the \textit{EKS} cluster outperformed the baseline \textit{RKE} instance by a margin of ~2\%,
+with the \textit{fargate} solution performing 20 \% slower than the baseline.
+Finally, both the \textit{ECS} backed instances completed the task about 50\% slower than the baseline.
 
 Table TODO-addRef and TODO-addRef illustrates the a rating in million of instructions per second (MIPS) when performing the 7zip \textit{LZMA} compression and decompression benchmark respectively.
-Under this benchmark, our baseline \textit{RKE} cluster posted the best result, with the two \textit{EC2} backed instances completing around 9\% (\textit{EKS}) and 10 \% (\textit{ECS}) less instructions respectively.
+Under this benchmark, the baseline \textit{RKE} instance posted the best result, with the two \textit{EC2} backed instances completing around 9\% (\textit{EKS}) and 10 \% (\textit{ECS}) less instructions respectively.
 The two \textit{fargate} backed instances struggled immensely to complete this benchmark,
 with the \textit{EKS} instance completing 80\% less tasks, and the \textit{ECS} instance completing 95 \% less tasks.
 
-\noindent \newline It should be noted that due to runtime and execution time-limit limitations, \textit{Lambda} did not participate in these CPU specific benchmarks.
+\noindent \newline It should be noted that due to runtime, and execution time-limit, limitations \textit{Lambda} did not complete in these CPU specific benchmarks.
 
 \subsection{Memory}
+Two criterion of memory performance was evaluated, the first being \emph{speed},
+which was evaluated using the RAMSpeed tool TODO-addRef, and \emph{bandwidth} using the MBW tool TODO-addRef.
+
+RAMSpeed performs four distinct memory intensive tasks with results, each measuring a different aspect of memory performance.
+All results are recorded as a measurement of speed (MB/S).
+This discussion will focus on Table TODO-addRef as it illustrates the average speed recorded for the entirety of the benchmark (that is all four distinct tasks),
+as the results (and performance difference) found in this table is wholly illustrative to the results found in each of the sub-tasks.
+The \textit{EC2} backed \textit{EKS} instance outperformed the baseline \textit{RKE} instance by completing the tasks close to 36\% quicker.
+This was followed by a significantly slower \textit{fargate} backed instance of \textit{EKS}, and \textit{EC2} backed \textit{ECS} instance,
+which both completed close to 80\% slower than the baseline.
+Finally the \textit{fargate} backed \textit{ECS} instance completed the benchmark close to 88\% slower.
+
+\noindent \newline MBW measures the amount of copy memory bandwidth available to a user-application in terms of speed (MiB/s).
+The baseline \textit{RKE} instance completed this benchmark the quickest, with the \textit{EC2} backed \textit{EKS} instance following at 29\% slower.
+The \textit{fargate} backed \textit{EKS} instance completed 64\% slower,
+followed by the two \textit{ECS} workloads at 83\% and 87\% slower for the \textit{EC2} and \textit{fargate} instances respectively.
+
+\noindent \newline It should be noted that due to runtime, and execution time-limit, limitations \textit{Lambda} did not complete in these Memory specific benchmarks.
 
 \subsection{I/O}
+fs_mark TODO-addRef evaluates a system's underlying file-system by performing heavily synchronous IO tasks across multiple folders/drives, measured in terms of speed (number of files per second).
+Table TODO-addRef shows the \textit{EC2} backed \textit{ECS} instance outperforming the baseline \textit{RKE} instance by close to 64\%,
+followed closely by the \textit{EC2} backed \textit{EKS} instance which outperformed the baseline by close to 63\%.
+
+\noindent \newline It should be noted that due to file-system mount limitations,
+neither of the \textit{Serverless} backed instances( that is \textit{Lambda} and \textit{fargate}) were able to complete these I/O specific benchmarks.
 
 \subsection{General Workloads}
+In addition to focused hardware specific benchmarks (which are not often illustrative of real-world performance),
+the following benchmarks were run to simulate performance under daily-tasks.
 
+\subsubsection{m-queens}
+m-queens TODO-addRef solves the \emph{n-queens} TODO-addRef problem using multi-threading, measured in terms of time-to-completion (s).
+Table TODO-addRef shows the baseline \textit{RKE} cluster complete in the quickest amount of time,
+followed by the \textit{EC2} backed \textit{EKS} instance almost 50\% slower.
+The other instances completed this task an order of magnitude slower, all completing close to 99\% slower than baseline.
 
-As illustrated above, under all of the benchmarks performed, it is noted that \textit{Serverless} (fargate)
+\subsubsection{tool-container-benchmark}
+\emph{tool-container-benchmark} simulates a general \textit{CRUD} based workload at load, measured in terms of time-to-completion (m).
+
+Due to extreme network latency in terms of the database, the set of benchmarks were run twice, first against an on-premise database (illustrated by Table TODO-addRef),
+and the second against a cloud-hosted \textit{RDS} instance (illustrated by Table TODO-addRef).
+Additionally in an attempt to cater for \textit{Lambda}, the set of benchmarks were run with a limit of 30000 \emph{events}, against both the on-premise and RDS databases
+(illustrated by Table TODO-addRef and Table TODO-addRef) respectively
+
+Even with the extreme network latency caused by the database, a clear performance difference is seen in Table TODO-addRef and TODO-addRef when comparing between the various instances (excluding the baseline instance),
+with the \textit{EC2} backed \textit{EKS} instance performing consistently the quickest, followed by the \textit{fargate} backed \textit{EKS} instance,
+with the two \textit{EC2} and \textit{fargate} backed \textit{ECS} instances completing third and forth, with the \textit{Lambda} instance completing last.
+
+Table TODO-addRef illustrates a different pattern (once again excluding the baseline) with the \textit{EC2} backed \textit{EKS} instance performing the quickest,
+followed by the two \textit{ECS} instances, with the \textit{fargate} backed and \textit{EC2} instances completing 9\% and 14\% slower respectively.
+Finally, the \textit{fargate} backed \textit{EKS} instance completed 18\% slower.
+
+Table TODO-addRef illustrates an anomaly with the \textit{fargate} backed \textit{ECS} instance completing around 40\% quicker than the other instances, with all other instances completing within 30s of each other
+except for \textit{Lambda} which completed close to 64\% slower.
+
+Finally Table TODO-addRef compares the results of each instance with the database located closest to it (in an effort to remove network latency as a factor of comparison).
+
+\subsection{Conclusion}
+As illustrated above a near constant pattern can be seen across each of the benchmarks run. \textit{EKS} workloads performed closest (and occasionally outperformed) the baseline \textit{RKE} instances,
+with \textit{ECS} workloads lagging behind. This can be attributed to the hidden overhead by the managing agents and platform architecture of \textit{ECS}.
+Being a \emph{proprietary} and \emph{closed} technology, all performance optimization is done \emph{in-house} by the cloud-provider.
+Comparing this to \textit{Kubernetes}, being an \textit{open-source} technology, it is worked on by millions of contributors TODO-addRef, which would contribute towards its consistently better optimized
+performance. This would be applicable to features like \emph{burstable} resource limits (which allows a container instance to consume above its resource request for short-periods of time) as well.
+
+Additionally it is noted that \textit{Serverless} (\textit{fargate} and \textit{Lambda})
 architectures showed significant performance drops when compared to their \textit{Virtual Machine} (EC2) counterparts,
 even when managed by the same orchestration platform.
 A potential reasoning for this would be the extra network-hops required for these \textit{Serverless}
 instances to communicate with the platform managing-agents and other resources within a customer \textit{VPC}.
-Additionally, \textit{Serverless} platforms run on shared tenant hardware managed by the cloud provider,
+Finally, \textit{Serverless} platforms run on shared tenant hardware managed by the cloud provider,
 which would in turn be stricter on the resource usage per container instance.
-
-
 
 \section{Cost}
 
@@ -63,7 +120,7 @@ This project aimed to compare \emph{Cloud Container Orchestration} platforms in 
 
 \noindent Based on the experimentation results presented and aforementioned argued points, the following conclusions are made
 \begin{itemize}
-      \item selection of container-orchestration platform will have a minor impact on performance for certain workloads
+      \item selection of container-orchestration platform will have a minor impact on performance on workloads
             \begin{itemize}
                   \item \textit{EKS} running workloads generally performed closer to the benchmark cluster across the widest array of tests,
                         with both \textit{ECS}, followed by \textit{Lambda}, lagging constantly behind, with low, but measurable performance impact.
@@ -86,8 +143,8 @@ This project aimed to compare \emph{Cloud Container Orchestration} platforms in 
             These \emph{ease-of-use} factors are off-set by a measurable loss in performance, marginal (yet observable) lower level of resiliency, provider \textit{lock-in},
             and limited support.
       \item Managed Cloud \textit{Kubernetes} platforms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
-            that a \textit{k8s} cluster offers (this include that existing tooling would require little-to-no changes as part of the migration process),
-            at the cost of increased complexity (in terms of tie-ins to other cloud offered services) and monthly costing.
+            that a \textit{k8s} cluster offers (this includes that existing tooling would require little-to-no changes as part of the migration process),
+            at the cost of increased complexity (in terms of tie-ins to other cloud offered services), and an increase in monthly costing.
 \end{itemize}
 
 \section{Future Work}
