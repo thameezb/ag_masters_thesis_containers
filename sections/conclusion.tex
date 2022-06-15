@@ -46,12 +46,11 @@ followed by the two \textit{ECS} workloads at 83\% and 87\% slower for the \text
 \noindent \newline It should be noted that due to runtime, and execution time-limit, limitations \textit{Lambda} did not complete in these Memory specific benchmarks.
 
 \subsection{I/O}
-fs_mark TODO-addRef evaluates a system's underlying file-system by performing heavily synchronous IO tasks across multiple folders/drives, measured in terms of speed (number of files per second).
+fs\_mark TODO-addRef evaluates a system's underlying file-system by performing heavily synchronous IO tasks across multiple folders\/drives, measured in terms of speed (number of files per second).
 Table TODO-addRef shows the \textit{EC2} backed \textit{ECS} instance outperforming the baseline \textit{RKE} instance by close to 64\%,
 followed closely by the \textit{EC2} backed \textit{EKS} instance which outperformed the baseline by close to 63\%.
 
-\noindent \newline It should be noted that due to file-system mount limitations,
-neither of the \textit{Serverless} backed instances( that is \textit{Lambda} and \textit{fargate}) were able to complete these I/O specific benchmarks.
+\noindent \newline It should be noted that due to file-system mount limitations, neither of the \textit{Serverless} backed instances( that is \textit{Lambda} and \textit{fargate}) were able to complete these I\/O specific benchmarks.
 
 \subsection{General Workloads}
 In addition to focused hardware specific benchmarks (which are not often illustrative of real-world performance),
