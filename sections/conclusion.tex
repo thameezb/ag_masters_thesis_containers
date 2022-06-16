@@ -83,7 +83,7 @@ except for \textit{Lambda} which completed close to 64\% slower.
 
 Finally Table TODO-addRef compares the results of each instance with the database located closest to it (in an effort to remove network latency as a factor of comparison).
 
-\subsection{Conclusion}
+\subsection*{Conclusion}
 As illustrated above a near constant pattern can be seen across each of the benchmarks run. \textit{EKS} workloads performed closest (and occasionally outperformed) the baseline \textit{RKE} instances,
 with \textit{ECS} workloads lagging behind. This can be attributed to the hidden overhead by the managing agents and platform architecture of \textit{ECS}.
 Being a \emph{proprietary} and \emph{closed} technology, all performance optimization is done \emph{in-house} by the cloud-provider.
@@ -99,6 +99,23 @@ Finally, \textit{Serverless} platforms run on shared tenant hardware managed by 
 which would in turn be stricter on the resource usage per container instance.
 
 \section{Cost}
+Table TODO-addRef illustrates the difference in costing when running \emph{tool-container-benchmark} three times with 30000 events, measured in US Dollars.
+This table includes the dollar costing of running the actual workload (for the given period) and the cost of all dependencies,
+this may include the environment or required additional services like an \textit{ALB}, over a given period.
+The \textit{Serverless} instances have the advantage with \textit{Lambda} costing the lowest amount, followed by the \textit{fargate} backed \textit{ECS} and \textit{EKS} instances.
+The two \textit{EC2} instances follow with \textit{ECS} and \textit{EKS} respectively.
+
+Table TODO-addRef projects the costing of running a long-lived services on each platform. Here we see the two \textit{EC2} instances taking the lead,
+with the \textit{ECS} and \textit{EKS} cluster costing less over the given period. Followed by the two \textit{fargate} backed instances, and \textit{Lambda} costing in the most.
+It should be noted that due to \textit{Lambda}'s time-limitation of 15 minutes, the value in this table is a theoretical project based on cost per second.
+
+\subsection*{Conclusion}
+For short lived or burst workloads, \textit{Serverless} options have the clear advantage as there is not additional environmental costs to consider.
+However, as noted by TODO-addRef and the results of forecast in Table TODO-addRef, the longer the workload needs to run, the more cost-effective \textit{EC2} instances become.
+Whilst \textit{ECS} and \textit{EKS} cost the same from a pure workload perspective, the additional monthly cost of running an \textit{EKS} cluster does become a contributing factor
+when comparing platforms at a pure dollar cost.
+
+\section{Resilience and Reliability}
 
 \section{Ease-of-Use}
 Each selected platform chosen required an architectural design, object configuration, and environment deployment.
@@ -141,7 +158,7 @@ Running workloads on \textit{fargate} and \textit{EC2} is quite similar in compl
 
 Deployments of workloads occur via a specific AWS tool called \emph{eksctl} TODO-addRef or the standard \textit{k8s} deployment tool \emph{kubectl} TODO-addRef
 
-\subsection{Conclusion}
+\subsection*{Conclusion}
 Table TODO-addRef illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads.
 Table TODO-addRef illustrates the amount of time required to convert an existing container workloads to run on each platform.
 \textit{Serverless} options have the clear advantage in amount of effort required to configure and create (by design), as a user does not need to
@@ -149,10 +166,8 @@ create, manage or maintain underlying \textit{Virtual Machine} instances. The co
 platform, as seen by \textit{Lambda}.
 \textit{ECS} and \textit{EKS} have a similar cost of effort to configure and create. \textit{ECS} has the advantage when comes to deploying workloads as it requires a
 single JSON task-definition file, whilst a \textit{k8s} deployment may consist of multiple objects each requiring specific configuration.
-This however would not be an issue for existing users of \textit{Kubernetes}.
-
-\section{Resilience and Reliability}
-
+This however would not be an issue for existing users of \textit{Kubernetes}.78````1''''
+kltr
 
 \chapter{Conclusion and Future Work}
 
