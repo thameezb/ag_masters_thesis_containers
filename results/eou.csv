@@ -1,0 +1,6 @@
+﻿,Lambda,ECS_Fargate,ECS_EC2,EKS_Fargate,EKS_EC2
+Time taken to deploy,,,,,
+,1,5,10,6,10
+,,,,,
+Time taken to convert,,,,,
+,30,1,1,1,1
