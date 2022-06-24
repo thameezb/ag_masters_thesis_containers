@@ -121,15 +121,15 @@ Each platform was subjected to two \textit{Chaos-Monkey} style tests to assert a
 
 Table TODO-addRef illustrates the average amount of \textit{down-time} when scaling down the number of container-workloads to 0 and back to 1, measured in seconds.
 The two \textit{EC2} backed workloads completed the scaling in the quickest, with \textit{EKS} completing first, followed by \textit{ECS}.
-The two \textit{fargate} workloads followed, with \textit{ECS} completing TODO-addPercentage quicker than \textit{EKS}.
+The two \textit{fargate} workloads followed, with \textit{ECS} completing 62\% quicker than \textit{EKS}.
 It should be noted that due to inability to scale \textit{Lamda} functions, it did not participate in this test.
 
 Table TODO-addRef illustrates the average amount of time taken between a container workload being forcibly killed, and the workload being restarted, and ready to respond.
-\textit{EKS} once again responded to this TODO-addPercentage quicker than the \textit{ECS} workload, where the controller still noted the removed container as active and ready.
+\textit{EKS} once again responded to this 33\% quicker than the \textit{ECS} workload, where the controller still noted the removed container as active and ready.
 It should be noted that due to the \textit{Serverless} nature of both \textit{Lambda} and \textit{fargate}, neither of these participated in this test.
 
 Table TODO-addRef illustrates the average amount of time taken between an underlying host being rebooted unexpectedly, the workload being restarted, and ready to respond.
-\textit{ECS} handled the scale-in process TODO-addPercentage faster than its \textit{EKS} counter-part.
+\textit{ECS} handled the scale-in process 11\% faster than its \textit{EKS} counter-part.
 It should be noted that due to the \textit{Serverless} nature of both \textit{Lambda} and \textit{fargate}, neither of these participated in this test.
 
 \subsection*{Conclusion}
@@ -188,11 +188,11 @@ Running workloads on \textit{fargate} and \textit{EC2} is quite similar in compl
 Deployments of workloads occur via a specific AWS tool called \emph{eksctl} TODO-addRef or the standard \textit{k8s} deployment tool \emph{kubectl} TODO-addRef
 
 \subsection*{Conclusion}
-Table TODO-addRef illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads.
-Table TODO-addRef illustrates the amount of time required to convert an existing container workloads to run on each platform.
-\textit{Serverless} options have the clear advantage in amount of effort required to configure and create (by design), as a user does not need to
+Table TODO-addRef illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads (measured in minutes).
+Table TODO-addRef illustrates the amount of time required to convert an existing container workloads to run on each platform (measured in minutes).
+Both of the above tables illustrate that \textit{Serverless} options have the clear advantage in amount of effort required to configure and create (by design), as a user does not need to
 create, manage, or maintain underlying \textit{Virtual Machine} instances. The cost of this is in potential complexity required to get container workloads running on the
-platform, as seen by \textit{Lambda}.
+platform, as seen by \textit{Lambda} result.
 \textit{ECS} and \textit{EKS} have a similar cost of effort to configure and create. \textit{ECS} has the advantage when comes to deploying workloads as it requires a
 single JSON task-definition file, whilst a \textit{k8s} deployment may consist of multiple objects each requiring specific configuration.
 This however would not be an issue for existing users of \textit{Kubernetes}.
@@ -230,19 +230,20 @@ This project aimed to compare \emph{Cloud Container Orchestration} platforms in 
             the numerous limitations of attempting to run standard \textit{container-workloads} on a
             \textit{Serverless} architectural design, makes it an inviable replacement for an existing container-orchestration platform
       \item \textit{Cloud-Native} container orchestration platforms generally offer a more \emph{consistent} experience
-            (in context to the rest of the chosen \textit{cloud} provider's environment), with simpler tie-ins to other offered services, and marginally lower costs.
+            (in context to the rest of the chosen \textit{cloud} provider's environment), with simpler tie-ins to other offered services, and lower costs.
             These \emph{ease-of-use} factors are off-set by a measurable loss in performance, marginal (yet observable) lower level of resiliency, provider \textit{lock-in},
             and limited support.
-      \item Managed Cloud \textit{Kubernetes} platforms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
+      \item Managed Cloud \textit{Kubernetes} platorms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
             that a \textit{k8s} cluster offers (this includes that existing tooling would require little-to-no changes as part of the migration process),
-            at the cost of increased complexity (in terms of tie-ins to other cloud offered services), and an increase in monthly costing.
+            at the cost of increased complexity (in terms of tie-ins to other cloud offered services and architectural design),
+            and an increase in monthly costing.
 \end{itemize}
 
 \chapter{Future Work}
 In respect of continuing research under this topic, the following points should be considered:
 \begin{itemize}
-      \item This project compared \emph{Cloud Container Orchestration} platforms under the lense of migration,
-            an interesting lense would be a comparison under the lense of a fresh technological adoption of \textit{containerization}
+      \item This project compared \emph{Cloud Container Orchestration} platforms under the lense of \emph{migration},
+            an interesting lense would be a comparison under the lense of a fresh technological \emph{adoption} of \textit{containerization}
             (as this is the state most start-ups and newly founded enterprises find themselves in)
       \item \textit{AWS} and its selected representations of the various available technologies were used for experimentation in this project
             under the premise that the other cloud-providers offer services which are identical at a feature-parity level.
