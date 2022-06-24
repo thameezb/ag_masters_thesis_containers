@@ -1,0 +1,32 @@
+﻿forcasted costing,,,,,,
+Group hierarchy,Region,Service,Monthly,First 12 months total,Currency,Configuration summary
+My Estimate > Lambda Estimate,Africa (Cape Town),Application Load Balancer,39.24,470.88,USD,Number of Application Load Balancers (1)
+My Estimate > Lambda Estimate,Africa (Cape Town),AWS Lambda,80.87,970.44,USD,"Architecture (x86), Architecture (x86), Amount of ephemeral storage allocated (512 MB), Number of requests (1000 per hour)"
+,,,120.11,1441.32,,
+,,,,,,
+My Estimate > EKS_Fargate,Africa (Cape Town),Amazon EKS,73,876,USD,Number of EKS Clusters (1)
+My Estimate > EKS_Fargate,Africa (Cape Town),AWS Fargate,12.16,145.92,USD,"Operating system (Linux), CPU Architecture (x86), Average duration (1 days), Number of tasks or pods (1 per day), Amount of ephemeral storage allocated for Amazon ECS (20 GB)"
+My Estimate > EKS_Fargate,Africa (Cape Town),Application Load Balancer,28.83,345.96,USD,Number of Application Load Balancers (1)
+,,,113.99,1367.88,,
+,,,,,,
+My Estimate > EKS_EC2,Africa (Cape Town),Amazon EKS,73,876,USD,Number of EKS Clusters (1)
+My Estimate > EKS_EC2,Africa (Cape Town),Application Load Balancer,28.83,345.96,USD,Number of Application Load Balancers (1)
+My Estimate > EKS_EC2 (per container),,Amazon EC2,11.793125,,,
+My Estimate > EKS_EC2,Africa (Cape Town),Amazon EC2,377.38,4528.56,USD,"Operating system (Linux), Quantity (1), Pricing strategy (On-Demand Instances), Storage amount (50 GB), Instance type (m5.2xlarge)"
+,,,113.623125,1363.4775,,
+,,,,,,
+My Estimate > ECS_Fargate,Africa (Cape Town),AWS Fargate,12.16,145.92,USD,"Operating system (Linux), CPU Architecture (x86), Average duration (1 days), Number of tasks or pods (1 per day), Amount of ephemeral storage allocated for Amazon ECS (20 GB)"
+My Estimate > ECS_Fargate,Africa (Cape Town),Application Load Balancer,28.83,345.96,USD,Number of Application Load Balancers (1)
+,,,40.99,491.88,,
+,,,,,,
+My Estimate > ECS_EC2,Africa (Cape Town),Application Load Balancer,28.83,345.96,USD,Number of Application Load Balancers (1)
+My Estimate > ECS_EC2 (per container),,,11.793125,,,
+My Estimate > ECS_EC2,Africa (Cape Town),Amazon EC2,377.38,4528.56,USD,"Operating system (Linux), Quantity (1), Pricing strategy (On-Demand Instances), Storage amount (50 GB), Instance type (m5.2xlarge)"
+,,,40.623125,487.4775,,
+,,,,,,
+tool-container-benchmark costing,,,,,,
+Lambda ,0.05,,,,,
+ECS_Fargate,0.09,,,,,
+ECS_EC2,0.44,,,,,
+EKS_Fargate,0.17,,,,,
+EKS_EC2,0.52,,,,,
