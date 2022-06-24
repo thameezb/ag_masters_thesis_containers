@@ -105,12 +105,13 @@ this may include the environment or required additional services like an \textit
 The \textit{Serverless} instances have the advantage with \textit{Lambda} costing the lowest amount, followed by the \textit{fargate} backed \textit{ECS} and \textit{EKS} instances.
 The two \textit{EC2} instances follow with \textit{ECS} and \textit{EKS} respectively.
 
-Table TODO-addRef projects the costing of running a long-lived services on each platform. Here we see the two \textit{EC2} instances taking the lead,
-with the \textit{ECS} and \textit{EKS} cluster costing less over the given period. Followed by the two \textit{fargate} backed instances, and \textit{Lambda} costing in the most.
+Table TODO-addRef projects the costing of running a long-lived services on each platform. Here we see the two \textit{ECS} backed instances taking the lead,
+with two \textit{EKS} backed instances following. For both of the above results, when scaling the cost of an \textit{EC2} instance to a cost per container
+(as a single \textit{VM} can run 32 containers of the tested spec at the same cost), \textit{fargate} begins to exceed the cost of \textit{EC2}
 It should be noted that due to \textit{Lambda}'s time-limitation of 15 minutes, the value in this table is a theoretical project based on cost per second.
 
 \subsection*{Conclusion}
-For short lived or burst workloads, \textit{Serverless} options have the clear advantage as there is not additional environmental costs to consider.
+For short lived or burstable workloads, \textit{Serverless} options have the clear advantage as there are no additional environmental costs to consider.
 However, as noted by TODO-addRef and the results of forecast in Table TODO-addRef, the longer the workload needs to run, the more cost-effective \textit{EC2} instances become.
 Whilst \textit{ECS} and \textit{EKS} cost the same from a pure workload perspective, the additional monthly cost of running an \textit{EKS} cluster does become a contributing factor
 when comparing platforms at a pure dollar cost.
