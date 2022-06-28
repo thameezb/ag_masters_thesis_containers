@@ -1,4 +1,4 @@
-\part{Results and Evaluation}
+\part{Results}
 
 This chapter presents the relevant results of the investigation and experimentation phases.
 Presenting the tested cloud container orchestration platforms first,
@@ -24,11 +24,47 @@ The following platforms were evaluated as potential solutions:
 
 \section{Experimentation Results}
 
-\subsection{Performance and Latency}
-TODO-addGraphs
-\subsection{Ease-of-Use}
-TODO-addGraphs
-\subsection{Cost}
-TODO-addGraphs
-\subsection{Resilience and Reliability}
-TODO-addGraphs
+\begin{figure}[hp]
+  \includegraphics{images/cost-workload.png}
+  \caption{\emph{Cost}: Average cost of running \emph{tool-container-benchmark} with 30000 events}
+  \label{fig:cost_workload}
+\end{figure}
+
+\begin{table}[hp]
+  \caption{\emph{Cost}: Projected costing (\$) of running a sample long-lived service per solution for a month and year}
+  \small
+  \begin{tabularx}{1\textwidth}{X | X | X }
+    \space            & \bf{Monthly} & \bf{Annually} \\
+    \hline
+    \bf{Lambda      } & 120.11       & 1441.32       \\
+    \bf{ECS\_Fargate} & 40.99        & 491.88        \\
+    \bf{ECS\_EC2    } & 40.623125    & 487.4775      \\
+    \bf{EKS\_Fargate} & 113.99       & 1367.88       \\
+    \bf{EKS\_EC2    } & 113.623125   & 1363.4775     \\
+  \end{tabularx}
+  \label{fig:cost_projected}
+\end{table}
+
+\begin{figure}[hp]
+  \includegraphics{images/rr-scaling.png}
+  \caption{\emph{Resilience and Reliability}: Average amount of downtime measured between scaling operations from one instance, to no instances, and back to one instance}
+  \label{fig:rr_scaling}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/rr-deleteContainer.png}
+  \caption{\emph{Resilience and Reliability}: Average amount of downtime measured between deleting a container on underlying host and creation of new container instance}
+  \label{fig:rr_deleteContainer}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/rr-reboot.png}
+  \caption{\emph{Resilience and Reliability}: Average amount of downtime measured between deleting a container on underlying host and creation of new container instance}
+  \label{fig:rr_reboot}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/eou.png}
+  \caption{\emph{Ease-of-Use}: Amount of time taken to complete environmental bootstrap and convert an existing container workload to run on solution}
+  \label{fig:eou}
+\end{figure}
