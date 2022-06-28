@@ -99,37 +99,38 @@ Finally, \textit{Serverless} platforms run on shared tenant hardware managed by 
 which would in turn be stricter on the resource usage per container instance.
 
 \section{Cost}
-Table TODO-addRef illustrates the difference in costing when running \emph{tool-container-benchmark} three times with 30000 events, measured in US Dollars.
+Figure \ref{fig:cost_workload} illustrates the difference in average costing when running \emph{tool-container-benchmark} three times with 30000 events against an \textit{RDS} instance, measured in US Dollars.
 This table includes the dollar costing of running the actual workload (for the given period) and the cost of all dependencies,
 this may include the environment or required additional services like an \textit{ALB}, over a given period.
 The \textit{Serverless} instances have the advantage with \textit{Lambda} costing the lowest amount, followed by the \textit{fargate} backed \textit{ECS} and \textit{EKS} instances.
 The two \textit{EC2} instances follow with \textit{ECS} and \textit{EKS} respectively.
 
-Table TODO-addRef projects the costing of running a long-lived services on each platform. Here we see the two \textit{ECS} backed instances taking the lead,
+Table \ref{fig:cost_projected} projects the costing of running a long-lived services on each platform. Here we see the two \textit{ECS} backed instances taking the lead,
 with two \textit{EKS} backed instances following. For both of the above results, when scaling the cost of an \textit{EC2} instance to a cost per container
-(as a single \textit{VM} can run 32 containers of the tested spec at the same cost), \textit{fargate} begins to exceed the cost of \textit{EC2}
+(as a single \textit{VM} can run 32 containers of the tested spec at the same cost), \textit{fargate} begins to exceed the cost of \textit{EC2}.
+Additionally the \textit{EKS} platform cost is per cluster (not per container workload), therefore the additional \$73 cost per month of \textit{EKS} needs to be seen in the context of the amount of workloads being run on a cluster.
 It should be noted that due to \textit{Lambda}'s time-limitation of 15 minutes, the value in this table is a theoretical project based on cost per second.
 
 \subsection*{Conclusion}
-For short lived or burstable workloads, \textit{Serverless} options have the clear advantage as there are no additional environmental costs to consider.
-However, as noted by TODO-addRef and the results of forecast in Table TODO-addRef, the longer the workload needs to run, the more cost-effective \textit{EC2} instances become.
+For short lived or burst-able workloads, \textit{Serverless} options have the clear advantage as there are no additional environmental costs to consider.
+However, as noted by TODO-addRef and the results of forecast in Table \ref{fig:cost_projected}, the longer the workload needs to run, the more cost-effective \textit{EC2} instances become.
 Whilst \textit{ECS} and \textit{EKS} cost the same from a pure workload perspective, the additional monthly cost of running an \textit{EKS} cluster does become a contributing factor
 when comparing platforms at a pure dollar cost.
 
 \section{Resilience and Reliability}
 Each platform was subjected to two \textit{Chaos-Monkey} style tests to assert a level of resilience and reliability under extreme circumstances.
 
-Table TODO-addRef illustrates the average amount of \textit{down-time} when scaling down the number of container-workloads to 0 and back to 1, measured in seconds.
+Figure \ref{fig:rr_scaling} illustrates the average amount of \textit{downtime} when scaling down the number of container-workloads to 0 and back to 1, measured in seconds.
 The two \textit{EC2} backed workloads completed the scaling in the quickest, with \textit{EKS} completing first, followed by \textit{ECS}.
-The two \textit{fargate} workloads followed, with \textit{ECS} completing 62\% quicker than \textit{EKS}.
+The two \textit{fargate} workloads followed, with \textit{ECS} completing 33\% quicker than \textit{EKS}.
 It should be noted that due to inability to scale \textit{Lamda} functions, it did not participate in this test.
 
-Table TODO-addRef illustrates the average amount of time taken between a container workload being forcibly killed, and the workload being restarted, and ready to respond.
-\textit{EKS} once again responded to this 33\% quicker than the \textit{ECS} workload, where the controller still noted the removed container as active and ready.
+Figure \ref{fig:rr_deleteContainer} illustrates the average amount of time taken between a container workload being forcibly killed, and the workload being restarted, and ready to respond.
+\textit{EKS} once again responded to this 35\% quicker than the \textit{ECS} workload, where the controller still noted the removed container as active and ready.
 It should be noted that due to the \textit{Serverless} nature of both \textit{Lambda} and \textit{fargate}, neither of these participated in this test.
 
-Table TODO-addRef illustrates the average amount of time taken between an underlying host being rebooted unexpectedly, the workload being restarted, and ready to respond.
-\textit{ECS} handled the scale-in process 11\% faster than its \textit{EKS} counter-part.
+Figure \ref{fig:rr_reboot} illustrates the average amount of time taken between an underlying host being rebooted unexpectedly, the workload being restarted, and ready to respond.
+\textit{ECS} handled the scale-in process 17\% faster than its \textit{EKS} counter-part.
 It should be noted that due to the \textit{Serverless} nature of both \textit{Lambda} and \textit{fargate}, neither of these participated in this test.
 
 \subsection*{Conclusion}
@@ -188,9 +189,9 @@ Running workloads on \textit{fargate} and \textit{EC2} is quite similar in compl
 Deployments of workloads occur via a specific AWS tool called \emph{eksctl} TODO-addRef or the standard \textit{k8s} deployment tool \emph{kubectl} TODO-addRef
 
 \subsection*{Conclusion}
-Table TODO-addRef illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads (measured in minutes).
-Table TODO-addRef illustrates the amount of time required to convert an existing container workloads to run on each platform (measured in minutes).
-Both of the above tables illustrate that \textit{Serverless} options have the clear advantage in amount of effort required to configure and create (by design), as a user does not need to
+Figure \ref{fig:eou} illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads (measured in minutes).
+and the amount of time required to convert an existing container workload to run on each platform (measured in minutes).
+The above table illustrates that \textit{Serverless} options have the clear advantage in amount of effort required to configure and create (by design), as a user does not need to
 create, manage, or maintain underlying \textit{Virtual Machine} instances. The cost of this is in potential complexity required to get container workloads running on the
 platform, as seen by \textit{Lambda} result.
 \textit{ECS} and \textit{EKS} have a similar cost of effort to configure and create. \textit{ECS} has the advantage when comes to deploying workloads as it requires a
