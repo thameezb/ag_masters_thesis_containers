@@ -11,8 +11,30 @@ A broad investigation - in the form of a literature-review was undertaken - to f
 Additionally, interviews were performed at \emph{Allan Gray} focusing on tooling, architecture and deployment process.
 
 \chapter{System Design and Architecture}
+\section{Environment}
+\part{Methodology, System Architecture and Experimentation}
 
-Each solution was evaluated in a controlled AWS \emph{VPC} in the af-south-1 region, spread across three \emph{AZs}.
+This chapter aims to clearly explain the research process used to analyze the problem and potential solutions.
+Additionally it expands on the experimentation process undertaken in detail.
+
+\chapter{Methodology}
+
+A broad investigation - in the form of a literature-review was undertaken - to find, understand, compare and document the various cloud container platforms which AWS currently offers.
+Additionally, interviews were performed at \emph{Allan Gray} focusing on tooling, architecture and deployment process utilized by the company.
+
+\noindent \newline Each viable solution was then evaluated under the following four metrics:
+\begin{itemize}
+  \item Performance and Latency
+  \item Cost
+  \item Resilience
+  \item Ease-of-Use
+\end{itemize}
+
+\chapter{System Design and Architecture}
+
+Each solution was evaluated in a controlled AWS \emph{VPC} in a single region (af-south-1), spread across three \emph{AZs} (where applicable).
+Broad \textit{IAM} roles were created to grant required resources the correct permissions when accessing other resources.
+An open \textit{security group} was attached to each resource to remove network restrictions as a potential restriction during testing.
 The required cloud infrastructure was be deployed using \emph{Terraform} to ensure \emph{IaaC} principles are followed (and to maintain the \emph{correctness} of the testing environments).
 Solutions which are not \emph{serverless} in nature were run on distinct dedicated isolated AWS EC2 instances (Virtual Machines) of type \emph{m5.2xlarge} TODO-ref, TODO-addSpec. This ensured that each solution ran independently of one another.
 Solutions which are serverless in nature automatically achieved the same goal.
@@ -32,7 +54,6 @@ To create a baseline, all benchmarks were performed against an existing on-premi
 Additionally all other tooling or applications used can be found on GitHub at TODO-addSite.
 
 \chapter{Experimentation}
-Each viable option was evaluated in terms of the following metrics:
 \section{Performance and Latency}
 Performance and Latency were measured using two forms of benchmarking, the first following industry standard performance benchmarking using the phoronix-test-suite TODO-ref tool.
 With the second being a custom-built application benchmark, which was able to focus on \emph{CRUD} based activities.
@@ -41,7 +62,7 @@ Each of these benchmarks were run at least three times, with the outputted resul
 \subsection{phoronix-test-suite}
 The phoronix-test-suite is a high-customizable \emph{OSS} tool which acts as a wrapper to run various open-source benchmarking suites hosted by \emph{OpenBenchmarking.org} TODO-addRef.
 A custom test-suite was created which targets specific aspects of a container-platform which is relevant to this project (and builds upon a previous testing methodlogy used by TODO-addRef).
-Rhe selected tests are:
+The selected tests are:
 \begin{itemize}
   \item compress-7zip - this runs a set of 7zip compressions and decompressions against a 10GB file using \emph{7-zip}'s built in \emph{LZMA} benchmark.
         The benchmark primarily affects CPU and is measured in \emph{MIPS}.
@@ -76,12 +97,13 @@ Tooling code is available on GitHub at TODO-addSite.
 
 \section{Cost}
 Cost was measured in US Dollars using AWS's built in Cloud Costing tool TODO-ref, with each system matched to cost using identification tags.
-Additionally, forecasted cost was predicted using AWS's Costing Calulator tool TODO-ref.
+Additionally, forecasted cost was predicted using AWS's Costing Calculator tool TODO-ref.
 
 \section{Resilience and Reliability}
 Resilience and Reliability were measured using \textit{TTR} when performing standard Chaos Monkey TODO-ref processes for container workloads.
 These included evaluating the solution's ability to handle sudden scaling-in of container-workloads (that is to route network traffic to healthy replicas or respond to an unhealthy container by starting a new replica),
 and actual deletion of container-workloads at a host level (that is stopping the container at a host-level and observing the solution's ability to recover) where possible.
+The \textit{SLA}'s and underlying architecture would also be taken into consideration when discussing this aspect.
 
 \section{Ease-of-Use}
 Ease-of-Use (being a highly subjective metric) was evaluated in terms of complexity to configure the solution environment, additional tooling required to deploy to said environment,
