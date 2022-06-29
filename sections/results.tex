@@ -25,6 +25,60 @@ The following platforms were evaluated as potential solutions:
 \section{Experimentation Results}
 
 \begin{figure}[hp]
+  \includegraphics{images/perf-sysbench.png}
+  \caption{\emph{Performance}: Average time taken to compute primes up to 1000000 }
+  \label{fig:perf_sysbench}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/perf-7zip.png}
+  \caption{\emph{Performance}: Average rating in MIPS to complete the 7zip LZMA Benchmark }
+  \label{fig:perf_7zip}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/perf-RAMSpeed.png}
+  \caption{\emph{Performance}: Average maximum speed achieved whilst completing the RAMSpeed Benchmark }
+  \label{fig:perf_RAMSpeed}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/perf-MBW.png}
+  \caption{\emph{Performance}: Average maximum speed achieved whilst completing the Memory Bandwidth Benchmark }
+  \label{fig:perf_MBW}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/perf-FSMark.png}
+  \caption{\emph{Performance}: Average maximum speed achieved whilst completing the fs\_mark Benchmark }
+  \label{fig:perf_FSMark}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/perf-m_queens.png}
+  \caption{\emph{Performance}: Average amount of time required to solve the n-queens problem (n=18) }
+  \label{fig:perf_mQueens}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/perf-tcb_default.png}
+  \caption{\emph{Performance}: Average amount of time required to complete tool-container-benchmark (number\_of\_events=9000000) }
+  \label{fig:perf_tcb_default}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/perf-tcb_30000.png}
+  \caption{\emph{Performance}:Average amount of time required to complete tool-container-benchmark (number\_of\_events=30000) }
+  \label{fig:perf_tcb_30000}
+\end{figure}
+
+\begin{figure}[hp]
+  \includegraphics{images/perf-tcb_network.png}
+  \caption{\emph{Performance}:Average amount of time required to complete tool-container-benchmark, measured against Database closest to instance (number\_of\_events=30000)}
+  \label{fig:perf_tcb_network}
+\end{figure}
+
+\begin{figure}[hp]
   \includegraphics{images/cost-workload.png}
   \caption{\emph{Cost}: Average cost of running \emph{tool-container-benchmark} with 30000 events}
   \label{fig:cost_workload}
