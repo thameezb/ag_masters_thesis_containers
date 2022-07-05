@@ -27,7 +27,7 @@ with the \textit{EKS} instance completing 80\% less tasks, and the \textit{ECS} 
 
 \subsection{Memory}
 Two criterion of memory performance was evaluated, the first being \emph{speed},
-which was evaluated using the RAMSpeed tool TODO-addRef, and \emph{bandwidth} using the MBW tool TODO-addRef.
+which was evaluated using the RAMSpeed, and \emph{bandwidth} using the MBW tool.
 
 RAMSpeed performs four distinct memory intensive tasks with results, each measuring a different aspect of memory performance.
 All results are recorded as a measurement of speed (MB/S).
@@ -48,7 +48,7 @@ followed by the two \textit{ECS} workloads at 83\% and 87\% slower for the \text
 \noindent \newline It should be noted that due to runtime, and execution time-limit, limitations \textit{Lambda} did not complete in these Memory specific benchmarks.
 
 \subsection{I/O}
-fs\_mark TODO-addRef evaluates a system's underlying file-system by performing heavily synchronous IO tasks across multiple folders\/drives, measured in terms of speed (number of files per second).
+fs\_mark evaluates a system's underlying file-system by performing heavily synchronous IO tasks across multiple folders/drives, measured in terms of speed (number of files per second).
 
 Figure \ref{fig:perf_FSMark} illustrates the \textit{EC2} backed \textit{ECS} instance outperforming the baseline \textit{RKE} instance by close to 64\%,
 followed closely by the \textit{EC2} backed \textit{EKS} instance which outperformed the baseline by close to 63\%.
@@ -60,7 +60,7 @@ In addition to focused hardware specific benchmarks (which are not often illustr
 the following benchmarks were run to simulate performance under daily-tasks.
 
 \subsubsection{m-queens}
-m-queens TODO-addRef solves the \emph{n-queens} TODO-addRef problem using multi-threading, measured in terms of time-to-completion (s).
+m-queens solves the \emph{n-queens} problem using multi-threading, measured in terms of time-to-completion (s).
 
 Figure \ref{fig:perf_mQueens} shows the baseline \textit{RKE} cluster complete in the quickest amount of time,
 followed by the \textit{EC2} backed \textit{EKS} instance almost 50\% slower.
@@ -95,7 +95,7 @@ and \textit{EC2} backed instances performing better than their \textit{fargate} 
 As illustrated above a near constant pattern can be seen across each of the benchmarks run. \textit{EKS} workloads performed closest (and occasionally outperformed) the baseline \textit{RKE} instances,
 with \textit{ECS} workloads lagging behind. This can be attributed to the hidden overhead by the managing agents and platform architecture of \textit{ECS}.
 Being a \emph{proprietary} and \emph{closed} technology, all performance optimization is done \emph{in-house} by the cloud-provider.
-Comparing this to \textit{Kubernetes}, being an \textit{open-source} technology, it is worked on by millions of contributors TODO-addRef, which would contribute towards its consistently better optimized
+Comparing this to \textit{Kubernetes}, being an \textit{open-source} technology, it is worked on by over 43 000 (as of 2020)\cite{pittman_2020} of contributors, which would contribute towards its consistently better optimized
 performance. This would be applicable to features like \emph{burstable} resource limits (which allows a container instance to consume above its resource request for short-periods of time) as well.
 
 Additionally it is noted that \textit{Serverless} (\textit{fargate} and \textit{Lambda})
@@ -126,7 +126,7 @@ Whilst \textit{ECS} and \textit{EKS} cost the same from a pure workload perspect
 when comparing platforms at a pure dollar cost.
 
 \section{Resilience and Reliability}
-Each platform was subjected to two \textit{Chaos-Monkey} style tests to assert a level of resilience and reliability under extreme circumstances.
+Each platform was subjected to \textit{Chaos-Monkey} style tests to assert a level of resilience and reliability under extreme circumstances.
 
 Figure \ref{fig:rr_scaling} illustrates the average amount of \textit{downtime} when scaling down the number of container-workloads to 0 and back to 1, measured in seconds.
 The two \textit{EC2} backed workloads completed the scaling in the quickest, with \textit{EKS} completing first, followed by \textit{ECS}.
@@ -194,7 +194,7 @@ Ingress connectivity requires an additional ingress-controller component to be d
 
 Running workloads on \textit{fargate} and \textit{EC2} is quite similar in complexity to \textit{ECS}.
 
-Deployments of workloads occur via a specific AWS tool called \emph{eksctl} TODO-addRef or the standard \textit{k8s} deployment tool \emph{kubectl} TODO-addRef
+Deployments of workloads occur via a specific AWS tool called \emph{eksctl}\cite{weaveworks} or the standard \textit{k8s} deployment tool \emph{kubectl}\cite{kubernetes}
 
 \subsection*{Conclusion}
 Figure \ref{fig:eou} illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads (measured in minutes).
