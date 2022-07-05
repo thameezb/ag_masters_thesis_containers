@@ -56,6 +56,8 @@
 % Document links and bookmarks
 \usepackage{hyperref} 
 
+\usepackage{minted}
+
 % Numbering of headings down to the subsection level
 \numberingdepth{subsection}
 
@@ -79,7 +81,7 @@
 %\frontmatterMonograph 
 
 % Optional dedication
-\input{sections/dedication.tex}
+\dedication{Dedicated to all those whom tried and failed, who then tried and learnt}
 
 % Environment used to create a list of papers
 \input{sections/papers.tex}
@@ -110,5 +112,9 @@
 \nocite{*} % Remove this for your own citations
 \bibliographystyle{IEEEtran}
 \bibliography{References}
+
+\appendix
+\include{appendices/dockerImages.tex}
+\include{appendices/packerImages.tex}
 
 \end{document}
