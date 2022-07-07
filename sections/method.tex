@@ -50,7 +50,7 @@ Each of these benchmarks were run at least three times, with the outputted resul
 
 \subsection{phoronix-test-suite}
 The phoronix-test-suite is a high-customizable \emph{OSS} tool which acts as a wrapper to run various open-source benchmarking suites hosted by \emph{OpenBenchmarking.org}\cite{openbenchmarking.org_2020}.
-A custom test-suite was created which targets specific aspects of a container-platform which is relevant to this project (and builds upon a previous testing methodology used by TODO-addRef).
+A custom test-suite was created which targets specific aspects of a container-platform which is relevant to this project (and builds upon a previous testing methodology used by Potdar and Narayan\cite{POTDAR20201419}).
 The selected tests are:
 \begin{itemize}
   \item compress-7zip\cite{7zip_lzma_benchmark} --- runs a set of 7zip compressions and decompressions against a 10GB file using \emph{7zip}'s built in \emph{LZMA} benchmark.
@@ -74,7 +74,7 @@ Tooling code is available on GitHub at\cite{tool_benchmarking_suite}.
 
 \subsection{tool-container-benchmark}
 \textit{tool-container-benchmark} is a custom built open-source benchmarking tool. This tool performs basic \emph{CRUD} operations against a Database of choice,
-which mimics a portion of a typical enterprise workload TODO-addRef. The tool starts of by clearing all projects in a specific table, creates a basic data-set within the table,
+which mimics a portion of a typical enterprise workload. The tool starts of by clearing all projects in a specific table, creates a basic data-set within the table,
 and performs a set of randomly chosen \textit{events} against a random project. An event is defined to be either a creation, update or delete operation.
 The tool is written in \emph{go}\cite{go} and was natively compiled for the chosen container \emph{OS}. 
 
