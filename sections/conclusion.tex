@@ -1,4 +1,5 @@
 \part{Discussion, Conclusion and Future Work}
+\label{sec:discussion}
 
 This chapter evaluates the aforementioned results in context of the posed problem.
 Additionally concluding statements are presented, with potential future-work mentioned.
@@ -13,12 +14,12 @@ selection of \emph{orchestration platform} and \emph{underlying architecture} in
 CPU performance was evaluated by performing CPU intensive tasks, such as computing prime numbers using a prime sieve,
 and archive compression/ decompression and measuring the time taken to complete the respective tasks.
 
-Figure \ref{fig:perf_sysbench} illustrates the amount of time taken (s) to compute primes up to 1000000 across 4 threads using \textit{Sysbench}.
+Figure\ref{fig:perf_sysbench} illustrates the amount of time taken (s) to compute primes up to 1000000 across 4 threads using \textit{Sysbench}.
 The \textit{EC2} instance of the \textit{EKS} cluster outperformed the baseline \textit{RKE} instance by a margin of ~2\%,
 with the \textit{fargate} solution performing 20 \% slower than the baseline.
 Finally, both the \textit{ECS} backed instances completed the task about 50\% slower than the baseline.
 
-Figure \ref{fig:perf_7zip} illustrates the rating in million of instructions per second (MIPS) when performing the 7zip \textit{LZMA} compression and decompression benchmark.
+Figure\ref{fig:perf_7zip} illustrates the rating in million of instructions per second (MIPS) when performing the 7zip \textit{LZMA} compression and decompression benchmark.
 Under this benchmark, the baseline \textit{RKE} instance posted the best result, with the two \textit{EC2} backed instances completing around 9\% (\textit{EKS}) and 10 \% (\textit{ECS}) less instructions respectively.
 The two \textit{fargate} backed instances struggled immensely to complete this benchmark,
 with the \textit{EKS} instance completing 80\% less tasks, and the \textit{ECS} instance completing 95 \% less tasks.
@@ -32,7 +33,7 @@ which was evaluated using the RAMSpeed, and \emph{bandwidth} using the MBW tool.
 RAMSpeed performs four distinct memory intensive tasks with results, each measuring a different aspect of memory performance.
 All results are recorded as a measurement of speed (MB/S).
 
-This discussion will focus on last column in Figure \ref{fig:perf_RAMSpeed} as it illustrates the average speed recorded for the entirety of the benchmark (that is all four distinct tasks),
+This discussion will focus on last column in Figure\ref{fig:perf_RAMSpeed} as it illustrates the average speed recorded for the entirety of the benchmark (that is all four distinct tasks),
 as the results (and performance difference) found in this table is wholly illustrative to the results found in each of the sub-tasks.
 The \textit{EC2} backed \textit{EKS} instance outperformed the baseline \textit{RKE} instance by completing the tasks close to 36\% quicker.
 This was followed by a significantly slower \textit{fargate} backed instance of \textit{EKS}, and \textit{EC2} backed \textit{ECS} instance,
@@ -41,7 +42,7 @@ Finally the \textit{fargate} backed \textit{ECS} instance completed the benchmar
 
 \noindent \newline MBW measures the amount of copy memory bandwidth available to a user-application in terms of speed (MB/s).
 
-Figure \ref{fig:perf_MBW} illustrates the baseline \textit{RKE} instance completed this benchmark with the fastest speed, with the \textit{EC2} backed \textit{EKS} instance following at 29\% slower.
+Figure\ref{fig:perf_MBW} illustrates the baseline \textit{RKE} instance completed this benchmark with the fastest speed, with the \textit{EC2} backed \textit{EKS} instance following at 29\% slower.
 The \textit{fargate} backed \textit{EKS} instance completed 64\% slower,
 followed by the two \textit{ECS} workloads at 83\% and 87\% slower for the \textit{EC2} and \textit{fargate} instances respectively.
 
@@ -50,7 +51,7 @@ followed by the two \textit{ECS} workloads at 83\% and 87\% slower for the \text
 \subsection{I/O}
 fs\_mark evaluates a system's underlying file-system by performing heavily synchronous IO tasks across multiple folders/drives, measured in terms of speed (number of files per second).
 
-Figure \ref{fig:perf_FSMark} illustrates the \textit{EC2} backed \textit{ECS} instance outperforming the baseline \textit{RKE} instance by close to 64\%,
+Figure\ref{fig:perf_FSMark} illustrates the \textit{EC2} backed \textit{ECS} instance outperforming the baseline \textit{RKE} instance by close to 64\%,
 followed closely by the \textit{EC2} backed \textit{EKS} instance which outperformed the baseline by close to 63\%.
 
 \noindent \newline It should be noted that due to file-system mount limitations, neither of the \textit{Serverless} backed instances( that is \textit{Lambda} and \textit{fargate}) were able to complete these I\/O specific benchmarks.
@@ -62,7 +63,7 @@ the following benchmarks were run to simulate performance under daily-tasks.
 \subsubsection{m-queens}
 m-queens solves the \emph{n-queens} problem using multi-threading, measured in terms of time-to-completion (s).
 
-Figure \ref{fig:perf_mQueens} shows the baseline \textit{RKE} cluster complete in the quickest amount of time,
+Figure\ref{fig:perf_mQueens} shows the baseline \textit{RKE} cluster complete in the quickest amount of time,
 followed by the \textit{EC2} backed \textit{EKS} instance almost 50\% slower.
 The other instances completed this task an order of magnitude slower, all completing close to 99\% slower than baseline.
 
@@ -70,23 +71,23 @@ The other instances completed this task an order of magnitude slower, all comple
 \emph{tool-container-benchmark} simulates a general \textit{CRUD} based workload at load, measured in terms of time-to-completion (m).
 
 Due to extreme network latency in terms of the database, the set of benchmarks were run twice,
-first against an on-premise database, and the second against a cloud-hosted \textit{RDS} instance (illustrated by Figure \ref{fig:perf_tcb_default}).
+first against an on-premise database, and the second against a cloud-hosted \textit{RDS} instance (illustrated by Figure\ref{fig:perf_tcb_default}).
 Additionally in an attempt to cater for \textit{Lambda}, the set of benchmarks were re-run with a limit of 30000 \emph{events},
 against both the on-premise and RDS databases
-(illustrated by Figure \ref{fig:perf_tcb_30000}).
+(illustrated by Figure\ref{fig:perf_tcb_30000}).
 
-The \textit{RDS} series in Figure \ref{fig:perf_tcb_default} illustrates the \textit{EC2} backed \textit{EKS} instance performing the quickest,
+The \textit{RDS} series in Figure\ref{fig:perf_tcb_default} illustrates the \textit{EC2} backed \textit{EKS} instance performing the quickest,
 followed by the two \textit{ECS} instances, with the \textit{fargate} backed and \textit{EC2} instances completing 9\% and 14\% slower respectively.
 Finally, the \textit{fargate} backed \textit{EKS} instance completed the slowest (excluding the baseline \textit{RKE} instance).
 
-The \textit{RDS} series in Figure \ref{fig:perf_tcb_30000} illustrates an anomaly with the \textit{fargate} backed \textit{ECS}
+The \textit{RDS} series in Figure\ref{fig:perf_tcb_30000} illustrates an anomaly with the \textit{fargate} backed \textit{ECS}
 instance completing around 40\% quicker than the other instances, with all other instances completing within 30s of each other
 except for \textit{Lambda} which completed close to 64\% slower.
 
-Even with the extreme network latency caused by the database, a clear performance difference is seen by the \textit{On-premise} series in both Figures \ref{fig:perf_tcb_default} and Figures \ref{fig:perf_tcb_30000}
+Even with the extreme network latency caused by the database, a clear performance difference is seen by the \textit{on-premise} series in both Figures\ref{fig:perf_tcb_default} and Figures\ref{fig:perf_tcb_30000}
 when comparing between the various instances (excluding the baseline instance).
 
-Figure \ref{fig:perf_tcb_network} compares the results of each instance with the database located closest to it (in an effort to remove network latency as a factor of comparison) with \textit{number-of-events} set to 30000,
+Figure\ref{fig:perf_tcb_network} compares the results of each instance with the database located closest to it (in an effort to remove network latency as a factor of comparison) with \textit{number-of-events} set to 30000,
 which continues to illustrate the pattern of \textit{EKS} performing better than \textit{ECS},
 and \textit{EC2} backed instances performing better than their \textit{fargate} backed instances.
 
@@ -107,13 +108,13 @@ Finally, \textit{Serverless} platforms run on shared tenant hardware managed by 
 which would in turn be stricter on the resource usage per container instance.
 
 \section{Cost}
-Figure \ref{fig:cost_workload} illustrates the difference in average costing when running \emph{tool-container-benchmark} three times with 30000 events against an \textit{RDS} instance, measured in US Dollars.
+Figure\ref{fig:cost_workload} illustrates the difference in average costing when running \emph{tool-container-benchmark} three times with 30000 events against an \textit{RDS} instance, measured in US Dollars.
 This table includes the dollar costing of running the actual workload (for the given period) and the cost of all dependencies,
 this may include the environment or required additional services like an \textit{ALB}, over a given period.
 The \textit{Serverless} instances have the advantage with \textit{Lambda} costing the lowest amount, followed by the \textit{fargate} backed \textit{ECS} and \textit{EKS} instances.
 The two \textit{EC2} instances follow with \textit{ECS} and \textit{EKS} respectively.
 
-Table \ref{fig:cost_projected} projects the costing of running a long-lived services on each platform. Here we see the two \textit{ECS} backed instances taking the lead,
+Table\ref{fig:cost_projected} projects the costing of running a long-lived services on each platform. Here we see the two \textit{ECS} backed instances taking the lead,
 with two \textit{EKS} backed instances following. For both of the above results, when scaling the cost of an \textit{EC2} instance to a cost per container
 (as a single \textit{VM} can run 32 containers of the tested spec at the same cost), \textit{fargate} begins to exceed the cost of \textit{EC2}.
 Additionally the \textit{EKS} platform cost is per cluster (not per container workload), therefore the additional \$73 cost per month of \textit{EKS} needs to be seen in the context of the amount of workloads being run on a cluster.
@@ -128,16 +129,16 @@ when comparing platforms at a pure dollar cost.
 \section{Resilience and Reliability}
 Each platform was subjected to \textit{Chaos-Monkey} style tests to assert a level of resilience and reliability under extreme circumstances.
 
-Figure \ref{fig:rr_scaling} illustrates the average amount of \textit{downtime} when scaling down the number of container-workloads to 0 and back to 1, measured in seconds.
+Figure\ref{fig:rr_scaling} illustrates the average amount of \textit{downtime} when scaling down the number of container-workloads to 0 and back to 1, measured in seconds.
 The two \textit{EC2} backed workloads completed the scaling in the quickest, with \textit{EKS} completing first, followed by \textit{ECS}.
 The two \textit{fargate} workloads followed, with \textit{ECS} completing 33\% quicker than \textit{EKS}.
 It should be noted that due to inability to scale \textit{Lamda} functions, it did not participate in this test.
 
-Figure \ref{fig:rr_deleteContainer} illustrates the average amount of time taken between a container workload being forcibly killed, and the workload being restarted, and ready to respond.
+Figure\ref{fig:rr_deleteContainer} illustrates the average amount of time taken between a container workload being forcibly killed, and the workload being restarted, and ready to respond.
 \textit{EKS} once again responded to this 35\% quicker than the \textit{ECS} workload, where the controller still noted the removed container as active and ready.
 It should be noted that due to the \textit{Serverless} nature of both \textit{Lambda} and \textit{fargate}, neither of these participated in this test.
 
-Figure \ref{fig:rr_reboot} illustrates the average amount of time taken between an underlying host being rebooted unexpectedly, the workload being restarted, and ready to respond.
+Figure\ref{fig:rr_reboot} illustrates the average amount of time taken between an underlying host being rebooted unexpectedly, the workload being restarted, and ready to respond.
 \textit{ECS} handled the scale-in process 17\% faster than its \textit{EKS} counter-part.
 It should be noted that due to the \textit{Serverless} nature of both \textit{Lambda} and \textit{fargate}, neither of these participated in this test.
 
@@ -197,7 +198,7 @@ Running workloads on \textit{fargate} and \textit{EC2} is quite similar in compl
 Deployments of workloads occur via a specific AWS tool called \emph{eksctl}\cite{weaveworks} or the standard \textit{k8s} deployment tool \emph{kubectl}\cite{kubernetes}
 
 \subsection*{Conclusion}
-Figure \ref{fig:eou} illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads (measured in minutes).
+Figure\ref{fig:eou} illustrates the amount of time taken to bootstrap and configure each platform to be ready to run workloads (measured in minutes).
 and the amount of time required to convert an existing container workload to run on each platform (measured in minutes).
 The above table illustrates that \textit{Serverless} options have the clear advantage in amount of effort required to configure and create (by design), as a user does not need to
 create, manage, or maintain underlying \textit{Virtual Machine} instances. The cost of this is in potential complexity required to get container workloads running on the
@@ -242,7 +243,7 @@ This project aimed to compare \emph{Cloud Container Orchestration} platforms in 
             (in context to the rest of the chosen \textit{cloud} provider's environment), with simpler tie-ins to other offered services, and lower costs.
             These \emph{ease-of-use} factors are off-set by a measurable loss in performance, marginal (yet observable) lower level of resiliency, provider \textit{lock-in},
             and limited support.
-      \item Managed Cloud \textit{Kubernetes} platorms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
+      \item Managed Cloud \textit{Kubernetes} platforms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
             that a \textit{k8s} cluster offers (this includes that existing tooling would require little-to-no changes as part of the migration process),
             at the cost of increased complexity (in terms of tie-ins to other cloud offered services and architectural design),
             and an increase in monthly costing.

@@ -1,4 +1,5 @@
 \part{Methodology and System Architecture}
+\label{sec:method}
 
 This chapter aims to clearly explain the research process used to analyze the problem and potential solutions.
 Additionally it expands on the experimentation process undertaken in detail.
@@ -31,7 +32,7 @@ Existing on-premise instances were initially used as part of the the benchmarkin
 a distinct AWS \emph{RDS} \emph{MSSQL} Instance was created, with a new set of benchmark runs being performed.
 Each solution targeted distinct tables so as to keep the environments distinct, even at a data level.
 
-To create a baseline, all benchmarks were performed against an existing on-premise \emph{VMWare} cloud of \emph{VM}s (each \textit{VM} running 8 vCPU and 24GB of RAM) running \emph{RKE} (\emph{Allan Gray}'s existing container-platform) \\
+To create a baseline, all benchmarks were performed against an existing on-premise \emph{VMWare}\cite{vmware_2022} cloud of \emph{VM}s (each \textit{VM} running 8 vCPU and 24GB of RAM) running \emph{RKE} (\emph{Allan Gray}'s existing container-platform) \\
 
 \noindent Required code to recreate the testing environment can be found as \emph{Terraform} code in the following GitHub repositories:
 \begin{itemize}

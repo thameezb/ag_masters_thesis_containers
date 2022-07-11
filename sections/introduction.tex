@@ -1,15 +1,16 @@
 \part{Introduction}
+\label{sec:intro}
 \textit{If you can't measure it, you can't improve it -Peter Drucker}
 
 \chapter{Background}
-Containerization (or OS-Level Virtualization) \cite{virtualization} revolutionized the business world in 2013 with the introduction of Docker \cite{docker}.
+Containerization (or OS-Level Virtualization)\cite{virtualization} revolutionized the business world in 2013 with the introduction of Docker\cite{docker}.
 Coupled with the high adoption rate of containerization saw the rapid adoption of container-orchestration tools (with the most popular being Kubernetes\cite{k8s}).
 
 In parallel to the adoption of the aforementioned technologies, cloud-computing providers matured from offering basic compute, storage,
 and networking offerings; to more managed "cloud-native" services.Amazon Web Services (AWS),
-for example announced an early version of their custom container-orchestration tool (ECS) in 2015 \cite{ecs},
+for example announced an early version of their custom container-orchestration tool (ECS) in 2015\cite{ecs},
 expanding their container-orchestration offerings with a serverless container platform (Fargate) in 2017\cite{fargate},
-and a managed Kubernetes Engine (EKS) in 2018 \cite{eks}.
+and a managed Kubernetes Engine (EKS) in 2018\cite{eks}.
 More recently, AWS has announced the ability to run containers as Lambdas (Serverless Functions) in late 2020\cite{lambda}.
 
 \noindent These shifts in technological maturity enables workloads to fully leverage the advantages of containerization, with those offered by the cloud.
@@ -50,17 +51,17 @@ This project is restricted to investigation and experimentation pertaining to:
 
 \section{Justifying the choice of focusing solely on AWS}
 Whilst it seems that experimenting only on AWS severely restricts the generality of this investigation, in reality the offerings by the other two major cloud providers
-(being Google Cloud Platform and Microsoft Azure Cloud respectively), match the Cloud Orchestrated Container offerings by AWS at a feature-parity level \cite{contaier_workloads}.
-Additionally, AWS holds more that 33\% of the cloud market (as of Q4 2021) \cite{aws_cloud_share},
-and is considered to be the cloud-provider of choice for the the largest tech companies in the world today \cite{aws_users}.
+(being Google Cloud Platform and Microsoft Azure Cloud respectively), match the Cloud Orchestrated Container offerings by AWS at a feature-parity level\cite{contaier_workloads}.
+Additionally, AWS holds more that 33\% of the cloud market (as of Q4 2021)\cite{aws_cloud_share},
+and is considered to be the cloud-provider of choice for the the largest tech companies in the world today\cite{aws_users}.
 
 Therefore the broader results of this investigation (and recommendations) would (in theory) apply to the GCP and Azure cloud as well.
 
 \chapter{Structure}
-% This thesis is structured as follows: Section 2 covers the background and
-% related work. Section 3 introduces methods used in the development, design
-% of the system and the evaluation method in detail. In Section 4, we describe
-% and discuss the results and the evaluation results. In section 5, we conclude
-% results, limitations of the thesis and describe the future work
-% \noindent A \textit{quantitative} analysis will be presented, using the results from the experimentation phase.
-% However a \textit{qualitative} analysis will also be presented, with data gathered via interviews of developers, to better understand their requirements of a solution.
+This thesis is structured as follows:
+\begin{itemize}
+  \item Section\ref{sec:background} covers the background, definitions, and a brief overview of related work.
+  \item Section\ref{sec:method} introduces the methodology used, including the system architectural design, and explains in detail the evaluation method used.
+  \item Section\ref{sec:results} describes and presents the evaluation results.
+  \item Section\ref{sec:discussion} discuses the results, presents concluding statements, and describes potential future work.
+\end{itemize}
