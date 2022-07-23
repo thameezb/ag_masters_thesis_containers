@@ -17,18 +17,37 @@ These services include storage, processing, network, application, etc}.
 
 \section{Cloud Computing technologies used in this project}
 
-\subsection*{Virtual Private Cloud (VPC)}
+\subsection{Virtual Private Cloud (VPC)}
 AWS defines a VPC as a virtual network which closely resembles a traditional network that would be operated in an \emph{on-premise} data center, 
 with the benefits of using the scalable infrastructure of AWS, wherein cloud resources can be launched.\cite{awsdocs_2022}
 Beach et al. further explain that a \emph{VPC allows you to configure a custom network topology, as well as manage IP routing and security. 
 A network topology is the structure of the network and controls how data flows between nodes.}\cite{Beach2019}
 
-\subsection*{Availability Zones (AZ)}
-\subsection*{Elastic Compute Instance (EC2)}
-\subsubsection*{Amazon Machine Image (AMI)}
-\subsubsection*{Auto-Scaling Groups (ASG)}
-\subsection*{Security Groups (SG)}
-\subsection*{Relation Database Service(RDS)}
+\subsection{Regions \& Availability Zones (AZ)}
+Carty defines regions as \emph{geographic locations in which public cloud service providers' data centers reside} 
+and Availability Zones as \emph{isolated locations within data center regions from which public cloud services originate and operate}.\cite{carty_2015}
+
+That is to say a public cloud service provider could have multiple isolated data-centers (zones) within a specific geographical region of operation.
+Cloud resources can be deployed to various regions (and by extension specific zones) for redundancy and availability.
+
+\subsection{Elastic Compute Cloud (EC2)}
+Amazon Elastic Compute Cloud (Amazon EC2) provides scalable computing capacity in the Amazon Web Services (AWS) Cloud\cite{awsdocs_whatsisec2}.
+It achieves this by allowing the creation of on-demand \emph{Virtual Machines} in the cloud called \emph{instances}\cite{carty_2019}. 
+These instances can be of varying specifications \cite{daly_2022} and run various operating systems \cite{awsdocs_ec2os} per requirement.
+
+\subsubsection{Amazon Machine Image (AMI)}
+An Amazon Machine Image (AMI) is a template that contains a software configuration (for example, an operating system, an application server, and applications)\cite{awsdocs_ami}.
+AMIs are published by AWS, software vendors, or can be created by users themselves to contain specific application software or configuration required per instance.
+These templates are used to create EC2 instances\cite{Beach2014}. 
+
+\subsubsection{Auto-Scaling Groups (ASG)}
+AWS defines an ASG as a logical resource which \emph{contains a collection of Amazon EC2 instances that are treated as a logical grouping for the purposes of automatic scaling and management} \cite{awsdocs_asg}.
+ASGs helps you ensure that you have the correct number of Amazon EC2 instances available to handle the load for your application by scaling up or down the number of active instances based on requirement \cite{amazon_asg_docs}. 
+ASGs perform periodic health-checks on the instances within the group, replacing unhealthy instances with new instances to maintain availability.
+
+\subsection{Security Groups (SG)}
+
+\subsection{Relation Database Service(RDS)}
 
 \chapter{Virtual Machines}
 
