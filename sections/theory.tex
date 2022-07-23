@@ -46,8 +46,14 @@ ASGs helps you ensure that you have the correct number of Amazon EC2 instances a
 ASGs perform periodic health-checks on the instances within the group, replacing unhealthy instances with new instances to maintain availability.
 
 \subsection{Security Groups (SG)}
+AWS defines an SG as a logical resource which \emph{controls the traffic that is allowed to reach and leave the resources that it is associated with} \cite{amazon_2016}.
+In essence it is a per instance set of \emph{stateful} rules which defines the allowed ingress and egress network activity per instance. 
 
-\subsection{Relation Database Service(RDS)}
+\subsection{Relation Database Service (RDS)}
+Lutkevich \cite{lutkevich_2021} defines RDS as \emph{a managed SQL database service provided by Amazon Web Services (AWS). Amazon RDS supports an array of database engines to store and organize data. 
+It also helps with relational database management tasks, such as data migration, backup, recovery and patching.}
+
+RDS supports MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server \cite{beach2019relational}.
 
 \chapter{Virtual Machines}
 
