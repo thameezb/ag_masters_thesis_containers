@@ -96,7 +96,7 @@ Additionally, a forecasted costing of running a long-lived service per solution 
 was calculated using AWS's Pricing Calculator\cite{venning_2020} tool.
 
 \section{Resilience and Reliability}
-Resilience and Reliability were measured using \textit{TTR} when performing standard \textit{Chaos Monkey} processes for container workloads.
+Resilience and Reliability were measured using \textit{TTR} when performing standard \textit{Chaos-Engineering} processes for container workloads.
 These included evaluating the solution's ability to handle sudden scaling-in of container-workloads (that is to route network traffic to healthy replicas or respond to an unhealthy container by starting a new replica),
 and actual deletion of container-workloads at a host level (that is stopping the container at a host-level and observing the solution's ability to recover) where possible.
 Additionally an actual reboot of the underlying host (for \textit{Virtual Machine} based workloads) was also performed.
