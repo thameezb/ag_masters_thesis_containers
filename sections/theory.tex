@@ -81,9 +81,30 @@ Finally due to the overhead of virtualization, the \textit{guest} VM generally p
 \section{Serverless Containers}
 \subsection{AWS Fargate}
 
-\chapter{Infrastructure as Code}
-\section{Terraform}
+\chapter{Infrastructure as Code (IaC)}
+Rahman et al. define IaC as \emph{the practice to automatically configure system dependencies and to provision local and remote instances}\cite{RAHMAN201965}.
+IaC allows you to build, change, and manage your infrastructure in a safe, consistent, and repeatable way by defining resource configurations that you can version, reuse, and share\cite{hashicorp_tf_iac}.
+
+IaC allows for easy deployment of identical resources to multiple environments, 
+can follow standard code review processes, and can make use of a source-control system (like git).
+
+Common IaC tools include: chef\cite{chef}, puppet\cite{puppet}, ansible\cite{ansible}, Terraform\cite{terraform}, and packer\cite{packer}. 
+This project will be utilizing Terraform and packer.
+ 
+\section{Terraform (tf)}
+Terraform created by HashiCorp\cite{hashicorp}, is an open-source IaC software tool. 
+tf scripts are written in HashiCorp Configuration Language (HCL) or JSON, and can target both cloud and on-premise resources.
+tf utilizes \textit{providers} to communicate with services via their APIs, therefore tf is extendible to any service with public APIs. 
+
+Terraform uses a declarative configuration model to describe a desired final state. Upon deployment, tf first checks the current state of the service,
+and compares it to the saved state (that is the state at the end of the last deployment). Any external changes are noted and reverted to that which is declared in code.
+Finally tf attempts to change the current state of the service to the desired state declared by the user by making the required API calls.
+
 \section{packer}
+Terraform created by HashiCorp\cite{hashicorp}, is an open-source machine image IaC build and creation tool. 
+Generally used to create \emph{golden-images} \cite{HashiCorp_packer_docs} (that is base-level machine image which contains all requirements and configuration for a given provider).
+
+packer (similarly to Terraform) makes use of public APIs to create and configure machine images with various \textit{builders}, and benefits from the same advantages which IaC tooling provides.
 
 
 \chapter{Other Terms and Concepts}
