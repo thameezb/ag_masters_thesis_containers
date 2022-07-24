@@ -70,10 +70,47 @@ while leading to unpredictable performance for \textit{guest} VMs if the \textit
 Finally due to the overhead of virtualization, the \textit{guest} VM generally performs slower than non-virtualized environments\cite{Martinovic}.
 
 \chapter{Containerization}
+
+Containerization (or OS-Level Virtualization \cite{10.5555/1571423}) is defined by Dua et al. as 
+\emph{a light weight operating system running inside the host system, running instructions native to the core
+CPU, eliminating the need for instruction level emulation or just in time compilation}\cite{6903537}.
+
+Containers achieve the same benefits of VMs (including isolation) without the overhead of virtualization, therefore maintaining portability 
+without the significant drop in performance seen by VMs \cite{POTDAR20201419}.
+
+A more thorougher comparison between containers and VMs is presented in \cite[Table 1]{6903537}.
+
 \section{Docker}
-\section{Kubernetes}
+Docker \cite{docker} is an open-source container virtualization tool. 
+It defines a standard for the building of container images (via text templates called \textit{Dockerfiles} which describe a container and its dependencies),
+the distribution of container-images, and the creation and running of containers\cite{7093032}.
+
+Rad et al. \cite{rad2017introduction} provide a deep analysis of Docker, including a break-down of the Docker architecture presented in \cite[Fig. 1]{rad2017introduction}
+
+\section{Kubernetes (k8s)}
+Kubernetes \cite{kubernetes} is an open-source tool for managing containerized services. 
+Originally created by Google as Borg \cite{10.1145/2741948.2741964} abd being open-sourced in 2014\cite{metz_2014}. 
+
+Docker is sufficient as a tool to run container-workloads locally or on single-system architectures when running low number of containers.
+However, to fully leverage the power of containers, especially when running high number of containers across multiple host systems, additional features are required.
+k8s provides a user with (in relation to container-workloads): service discovery and load-balancing; storage-orchestration; self-healing; automatic bin-packing; automated roll-outs and rollbacks; 
+and secret and configuration management \cite{kubernetes_2022}.
+
+Luksa \cite{luksa2017kubernetes} presents a deep-dive exploration of the k8s architecture and design, including the basic building blocks as illustrated by \cite[Figure 1.9]{luksa2017kubernetes}.
+
+
 \section{AWS Elastic Container Service}
+ECS is a custom cloud-native fully-managed container-orchestration service launched by AWS in 2014 \cite{ecs}.
+ECS relies on the creation of an underlying cluster upon which container workloads are run.
+ECS wraps container-workloads in an abstraction called a \textit{task}, which houses additional information required by the orchestration tool.
+ECS ties in natively to other cloud-services (which include identity management, service discovery and load-balancing).
+ECS can schedule tasks on both VM and Serverless platforms \cite{ecs_2022}.
+
 \section{AWS Elastic Kubernetes Service}
+EKS is a cloud fully-managed Kubernetes service launched by AWS in 2018 \cite{eks}. 
+EKS obfuscates the control-plane portion of the k8s cluster, thus only exposing the worker-nodes to users.
+EKS ties into cloud-native services via adaptors and therefore expands upon the standard kubernetes functionality.
+EKS can also schedule tasks on both VM worker-nodes or Serverless workers\cite{hansen_2022}. 
 
 \chapter{Serverless Computing}
 \section{Serverless Functions}
@@ -132,4 +169,6 @@ The measure of time between a service being down, until service is restored.
 Service Level Agreements (SLAs) are a common way to formally specify the exact
 conditions (both functional and non-functional) under which services are or should
 be delivered \cite{wieder2011service}.
+
+
 \chapter{Related Work}

@@ -4,9 +4,9 @@
   journal = {Allan Gray | Investment Company | Investment Management}
 } 
 
- @misc{docker,
+ @misc{docker_usage,
   title   = {Docker: A favourite in the devops world},
-  url     = {http://www.opensourceforu.com/2017/02/docker-favourite-devops-world/},
+  url     = {https://www.opensourceforu.com/2017/02/docker-favourite-devops-world/},
   journal = {Open Source For You},
   author  = {Vivek Ratans},
   year    = {2017},
@@ -256,7 +256,7 @@
   author    = {WeaveWorks}
 } 
 
- @misc{kubernetes,
+ @misc{kubectl,
   title     = {Kubectl - the official CLI for K8s},
   url       = {https://kubernetes.io/docs/tasks/tools/},
   journal   = {Kubernetes},
@@ -607,6 +607,7 @@
 }
 
  @misc{chef,
+  title     = {Chef},
   url       = {https://www.chef.io/},
   journal   = {Chef},
   publisher = {Progress},
@@ -614,6 +615,7 @@
 } 
 
  @misc{puppet,
+  title     = {Puppet},
   url       = {https://puppet.com/},
   journal   = {Puppet},
   publisher = {PerForce},
@@ -621,6 +623,7 @@
 } 
 
  @misc{ansible,
+  title     = {ansible},
   url       = {https://www.ansible.com/},
   journal   = {Ansible},
   publisher = {RedHat},
@@ -628,6 +631,7 @@
 } 
 
  @misc{terraform,
+  title     = {Terraform},
   url       = {https://www.terraform.io/},
   journal   = {terraform},
   publisher = {HashiCorp},
@@ -635,6 +639,7 @@
 } 
 
  @misc{packer,
+  title     = {packer},
   url       = {https://www.packer.io/},
   journal   = {packer},
   publisher = {HashiCorp},
@@ -651,6 +656,7 @@
 } 
 
  @misc{hashicorp,
+  title     = {Hashicorp},
   url       = {https://www.hashicorp.com/},
   journal   = {HashiCorp},
   publisher = {HashiCorp},
@@ -664,4 +670,135 @@
   publisher = {HashiCorp},
   year      = {2022},
   month     = {Jan}
+} 
+
+ @misc{barr_2009,
+  title     = {The AWS Blog: The First Five Years},
+  url       = {https://aws.amazon.com/blogs/aws/aws-blog-the-first-five-years/},
+  publisher = {AWS},
+  author    = {Barr, Jeff},
+  year      = {2009},
+  month     = {Nov},
+  day       = {9}
+} 
+
+@phdthesis{10.5555/1571423,
+  author    = {Yu, Yang},
+  title     = {Os-Level Virtualization and Its Applications},
+  year      = {2007},
+  isbn      = {9780549914075},
+  publisher = {State University of New York at Stony Brook},
+  address   = {USA},
+  abstract  = {OS-level virtualization is a technology that partitions the operating system to create multiple isolated Virtual Machines (VM). An OS-level VM is a virtual execution environment that can be forked instantly from the base operating environment. OS-level virtualization has been widely used to improve security, manageability and availability of today’s complex software environment, with small runtime and resource overhead, and with minimal changes to the existing computing infrastructure. A main challenge with OS-level virtualization is how to achieve strong isolation among VMs that share a common base OS. In this dissertation we study major OS components of Windows NT kernel, and present a Feather-weight Virtual Machine (FVM), an OS-level virtualization implementation on Windows platform. The key idea behind FVM is access redirection and copy-on-write, which allow each VM to read from the base environment but write into the VM’s private workspace. In addition, we identify various communication interfaces and confine them in the scope of each individual VM. We demonstrate how to accomplish these tasks to isolate different VMs, and evaluate FVM’s performance overhead and scalability. We present five applications on the FVM framework: secure mobile code execution service, vulnerability assessment support engine, scalable web site testing, shared binary service for application deployment and distributed Display-Only File Server . To prevent malicious mobile code from compromising desktop’s integrity, we confine the execution of untrusted content inside a VM. To isolate undesirable side effects on production-mode network service during vulnerability scans, we clone the service to be scanned into a VM, and invoke vulnerability scanners on the virtualized service. To identify malicious web sites that exploit browser vulnerabilities, we use a web crawler to access untrusted sites, render their pages with browsers running in VMs, and monitor their execution behaviors. To allow Windows desktop to share binaries that are centrally stored, managed and patched, we launch shared binaries in a special VM whose runtime environment is imported from a central binary server. To protect confidential files in a file server against information theft by insiders, we ensure that file viewing/editing tools run in a client VM, which grants file content display but prevents file content from being saved on the client machine. In this dissertation, we show how to customize the generic FVM framework to accommodate the needs of these applications, and present experimental results that demonstrate their performance and effectiveness.},
+  note      = {AAI3337611}
+}
+
+@inproceedings{6903537,
+  author    = {Dua, Rajdeep and Raja, A Reddy and Kakadia, Dharmesh},
+  booktitle = {2014 IEEE International Conference on Cloud Engineering},
+  title     = {Virtualization vs Containerization to Support PaaS},
+  year      = {2014},
+  volume    = {},
+  number    = {},
+  pages     = {610-614},
+  doi       = {10.1109/IC2E.2014.41}
+}
+
+@article{7093032,
+  author  = {Anderson, Charles},
+  journal = {IEEE Software},
+  title   = {Docker [Software engineering]},
+  year    = {2015},
+  volume  = {32},
+  number  = {3},
+  pages   = {102-c3},
+  doi     = {10.1109/MS.2015.62}
+}
+
+@article{rad2017introduction,
+  title     = {An introduction to docker and analysis of its performance},
+  author    = {Rad, Babak Bashari and Bhatti, Harrison John and Ahmadi, Mohammad},
+  journal   = {International Journal of Computer Science and Network Security (IJCSNS)},
+  volume    = {17},
+  number    = {3},
+  pages     = {228},
+  year      = {2017},
+  publisher = {International Journal of Computer Science and Network Security}
+}
+
+ @misc{docker,
+  title     = {Docker},
+  url       = {https://www.docker.com/},
+  journal   = {Docker Inc},
+  publisher = {Docker},
+  year      = {2022}
+} 
+
+ @misc{kubernetes,
+  title     = {Kubernetes},
+  url       = {https://kubernetes.io/},
+  journal   = {K8s},
+  publisher = {CNCF},
+  year      = {2022}
+} 
+
+ @misc{metz_2014,
+  title     = {Google open sources its secret weapon in cloud computing},
+  url       = {https://www.wired.com/2014/06/google-kubernetes/},
+  journal   = {Wired},
+  publisher = {Conde Nast},
+  author    = {Metz, Cade},
+  year      = {2014},
+  month     = {Jun}
+} 
+
+@inproceedings{10.1145/2741948.2741964,
+  author    = {Verma, Abhishek and Pedrosa, Luis and Korupolu, Madhukar and Oppenheimer, David and Tune, Eric and Wilkes, John},
+  title     = {Large-Scale Cluster Management at Google with Borg},
+  year      = {2015},
+  isbn      = {9781450332385},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/2741948.2741964},
+  doi       = {10.1145/2741948.2741964},
+  abstract  = {Google's Borg system is a cluster manager that runs hundreds of thousands of jobs, from many thousands of different applications, across a number of clusters each with up to tens of thousands of machines.It achieves high utilization by combining admission control, efficient task-packing, over-commitment, and machine sharing with process-level performance isolation. It supports high-availability applications with runtime features that minimize fault-recovery time, and scheduling policies that reduce the probability of correlated failures. Borg simplifies life for its users by offering a declarative job specification language, name service integration, real-time job monitoring, and tools to analyze and simulate system behavior.We present a summary of the Borg system architecture and features, important design decisions, a quantitative analysis of some of its policy decisions, and a qualitative examination of lessons learned from a decade of operational experience with it.},
+  booktitle = {Proceedings of the Tenth European Conference on Computer Systems},
+  articleno = {18},
+  numpages  = {17},
+  location  = {Bordeaux, France},
+  series    = {EuroSys '15}
+}
+
+ @misc{kubernetes_2022,
+  title     = {What is kubernetes?},
+  url       = {https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/#why-you-need-kubernetes-and-what-can-it-do},
+  journal   = {Kubernetes},
+  publisher = {CNCF},
+  year      = {2022},
+  month     = {Apr}
+} 
+
+@inbook{luksa2017kubernetes,
+  title     = {Kubernetes in action},
+  author    = {Luksa, Marko},
+  year      = {2017},
+  publisher = {Simon and Schuster},
+  isbn      = {9781617293726},
+  page      = {19}
+}
+
+ @misc{ecs_2022,
+  url       = {https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html},
+  journal   = {What is Amazon Elastic Container Service?},
+  publisher = {AWS},
+  year      = {2022},
+  month     = {Jun}
+} 
+
+ @misc{hansen_2022,
+  url       = {https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html},
+  journal   = {What is EKS?},
+  publisher = {AWS},
+  author    = {Hansen, Niels Arthur},
+  year      = {2022}
 } 
