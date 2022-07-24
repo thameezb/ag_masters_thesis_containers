@@ -56,6 +56,18 @@ It also helps with relational database management tasks, such as data migration,
 RDS supports MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server \cite{beach2019relational}.
 
 \chapter{Virtual Machines}
+Defined by Popek and Goldburg in 1974 as \emph{an efficient, isolated duplicate of a real computer machine}\cite{popek_1974}. 
+A VM is resource which uses software (by emulating physical hardware) to run operating systems, programs, and applications. 
+Multiple isolated VMs can run as \textit{guests} on a single physical \textit{host} system, with each \textit{guest} VM reserving a portion of the underlying
+\textit{host}'s hardware. 
+
+VMs benefit from allowing easy restore points via \textit{snapshotting} (the ability to \textit{save} the entire state of a machine at any given point in time), 
+and the ability to quickly create multiple VMs which share the same properties, configuration, and applications via \textit{cloning}\cite{n-able_2021}. 
+
+Virtual Machines do have notable restrictions: infections from a \textit{host} system may spread to all \textit{guest} VMs;
+the sharing and reservation of underlying hardware results in a \textit{host} system which may not be fully utilized, 
+while leading to unpredictable performance for \textit{guest} VMs if the \textit{host} is under load. 
+Finally due to the overhead of virtualization, the \textit{guest} VM generally performs slower than non-virtualized environments\cite{Martinovic}.
 
 \chapter{Containerization}
 \section{Docker}
@@ -77,12 +89,26 @@ RDS supports MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server \cite{beach2019r
 \chapter{Other Terms and Concepts}
 \section*{Rancher Kubernetes Engine (RKE)}
 RKE is a Kubernetes distribution which runs entirely using Docker containers \cite{rke}. 
-\section*{LZMA}
-\section*{CRUD}
-\section*{Orchestration}
-\section*{Chaos-Engineering}
-\section*{Downtime}
-\section*{Time-to-recovery (TTR)}
-\section*{Service Level Agreements (SLAs)}
 
+\section*{LZMA}
+LZMA compression is a type of data-compression algorithm.
+It was designed by Igor Pavlov as part of the 7zip \cite{pavlov_2022} project and was first implemented in 1998.
+The name \textit{LZMA} stands for \textit{Lempel-Ziv Markov chain Algorithm}\cite{winzip_2021}
+
+\section*{CRUD}
+In computer programming, Create, Read, Update, and Delete are the four basic operations of persistent storage\cite{martin1983managing}.
+
+\section*{Orchestration}
+Orchestration is the automated configuration, coordination, and management of computer systems and software\cite{erl1900service}.
+
+\section*{Chaos-Engineering}
+Chaos Engineering is the discipline of experimenting on a system in order to build confidence in the system's capability to withstand turbulent conditions in production\cite{hochstein_2019}.
+
+\section*{Time-to-recover (TTR)}
+The measure of time between a service being down, until service is restored.
+
+\section*{Service Level Agreements (SLAs)}
+Service Level Agreements (SLAs) are a common way to formally specify the exact
+conditions (both functional and non-functional) under which services are or should
+be delivered \cite{wieder2011service}.
 \chapter{Related Work}
