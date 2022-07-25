@@ -54,7 +54,7 @@ fs\_mark evaluates a system's underlying file-system by performing heavily synch
 Figure\ref{fig:perf_FSMark} illustrates the \textit{EC2} backed \textit{ECS} instance outperforming the baseline \textit{RKE} instance by close to 64\%,
 followed closely by the \textit{EC2} backed \textit{EKS} instance which outperformed the baseline by close to 63\%.
 
-\noindent \newline It should be noted that due to file-system mount limitations, neither of the \textit{Serverless} backed instances( that is \textit{Lambda} and \textit{fargate}) were able to complete these I\/O specific benchmarks.
+\noindent \newline It should be noted that due to file-system mount limitations, neither of the \textit{Serverless} backed instances (that is \textit{Lambda} and \textit{fargate}) were able to complete these I\/O specific benchmarks.
 
 \subsection{General Workloads}
 In addition to focused hardware specific benchmarks (which are not often illustrative of real-world performance),
@@ -97,7 +97,7 @@ As illustrated above a near constant pattern can be seen across each of the benc
 with \textit{ECS} workloads lagging behind. This can be attributed to the hidden overhead by the managing agents and platform architecture of \textit{ECS}.
 Being a \emph{proprietary} and \emph{closed} technology, all performance optimization is done \emph{in-house} by the cloud-provider.
 Comparing this to \textit{Kubernetes}, being an \textit{open-source} technology, it is worked on by over 43 000 (as of 2020)\cite{pittman_2020} of contributors, which would contribute towards its consistently better optimized
-performance. This would be applicable to features like \emph{burstable} resource limits (which allows a container instance to consume above its resource request for short-periods of time) as well.
+performance. This would be applicable to features like burst-able resource limits (which allows a container instance to consume above its resource request for short-periods of time) as well.
 
 Additionally it is noted that \textit{Serverless} (\textit{fargate} and \textit{Lambda})
 architectures showed significant performance drops when compared to their \textit{Virtual Machine} (EC2) counterparts,
@@ -161,7 +161,7 @@ Each platform chosen required an architectural design, object configuration, and
 In addition, once every environment was ready, a deployment process needed to be designed to run our test workloads on the selected platforms.
 
 \subsection{Lambda}
-\textit{Lambda} proved to be the easiest environment to get configured, as there was no real "environment" to create. Being a serverless function,
+\textit{Lambda} proved to be the easiest environment to get configured, as there was no real environment to create. Being a serverless function,
 to run, it required that a Docker image exist (at this moment restricted to \textit{ECR} repositories only with a max image size of 10GB), environment variables to exist and be configured, max amount of memory
 and a maximum timeout (being less than 15 minutes). This however, came at an extreme cost of flexibility and configuration.
 \textit{Lambdas} being serverless \emph{functions} meant that the expected workload was a function (that is to perform a single task quickly which accepted a specific payload and response),
@@ -243,7 +243,7 @@ This project aimed to compare \emph{Cloud Container Orchestration} platforms in 
             (in context to the rest of the chosen \textit{cloud} provider's environment), with simpler tie-ins to other offered services, and lower costs.
             These \emph{ease-of-use} factors are off-set by a measurable loss in performance, marginal (yet observable) lower level of resiliency, provider \textit{lock-in},
             and limited support.
-      \item Managed Cloud \textit{Kubernetes} platforms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitos} and near \textit{standard} platform
+      \item Managed Cloud \textit{Kubernetes} platforms benefit from utilizing an \textit{open-sourced}, \emph{ubiquitous} and near \textit{standard} platform
             that a \textit{k8s} cluster offers (this includes that existing tooling would require little-to-no changes as part of the migration process),
             at the cost of increased complexity (in terms of tie-ins to other cloud offered services and architectural design),
             and an increase in monthly costing.

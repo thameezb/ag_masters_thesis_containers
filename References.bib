@@ -688,6 +688,7 @@
   year      = {2007},
   isbn      = {9780549914075},
   publisher = {State University of New York at Stony Brook},
+  school    = {State University of New York at Stony Brook},
   address   = {USA},
   abstract  = {OS-level virtualization is a technology that partitions the operating system to create multiple isolated Virtual Machines (VM). An OS-level VM is a virtual execution environment that can be forked instantly from the base operating environment. OS-level virtualization has been widely used to improve security, manageability and availability of today’s complex software environment, with small runtime and resource overhead, and with minimal changes to the existing computing infrastructure. A main challenge with OS-level virtualization is how to achieve strong isolation among VMs that share a common base OS. In this dissertation we study major OS components of Windows NT kernel, and present a Feather-weight Virtual Machine (FVM), an OS-level virtualization implementation on Windows platform. The key idea behind FVM is access redirection and copy-on-write, which allow each VM to read from the base environment but write into the VM’s private workspace. In addition, we identify various communication interfaces and confine them in the scope of each individual VM. We demonstrate how to accomplish these tasks to isolate different VMs, and evaluate FVM’s performance overhead and scalability. We present five applications on the FVM framework: secure mobile code execution service, vulnerability assessment support engine, scalable web site testing, shared binary service for application deployment and distributed Display-Only File Server . To prevent malicious mobile code from compromising desktop’s integrity, we confine the execution of untrusted content inside a VM. To isolate undesirable side effects on production-mode network service during vulnerability scans, we clone the service to be scanned into a VM, and invoke vulnerability scanners on the virtualized service. To identify malicious web sites that exploit browser vulnerabilities, we use a web crawler to access untrusted sites, render their pages with browsers running in VMs, and monitor their execution behaviors. To allow Windows desktop to share binaries that are centrally stored, managed and patched, we launch shared binaries in a special VM whose runtime environment is imported from a central binary server. To protect confidential files in a file server against information theft by insiders, we ensure that file viewing/editing tools run in a client VM, which grants file content display but prevents file content from being saved on the client machine. In this dissertation, we show how to customize the generic FVM framework to accommodate the needs of these applications, and present experimental results that demonstrate their performance and effectiveness.},
   note      = {AAI3337611}
@@ -798,6 +799,95 @@
  @misc{hansen_2022,
   url       = {https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html},
   journal   = {What is EKS?},
+  publisher = {AWS},
+  author    = {Hansen, Niels Arthur},
+  year      = {2022}
+} 
+
+@article{hellerstein2018serverless,
+  title   = {Serverless computing: One step forward, two steps back},
+  author  = {Hellerstein, Joseph M and Faleiro, Jose and Gonzalez, Joseph E and Schleier-Smith, Johann and Sreekanti, Vikram and Tumanov, Alexey and Wu, Chenggang},
+  journal = {arXiv preprint arXiv:1812.03651},
+  year    = {2018},
+  pages   = {1}
+}
+
+@article{hellerstein2018serverlessdisadvantages,
+  title   = {Serverless computing: One step forward, two steps back},
+  author  = {Hellerstein, Joseph M and Faleiro, Jose and Gonzalez, Joseph E and Schleier-Smith, Johann and Sreekanti, Vikram and Tumanov, Alexey and Wu, Chenggang},
+  journal = {arXiv preprint arXiv:1812.03651},
+  year    = {2018},
+  pages   = {2}
+}
+@article{jonas2019cloud,
+  title   = {Cloud programming simplified: A berkeley view on serverless computing},
+  author  = {Jonas, Eric and Schleier-Smith, Johann and Sreekanti, Vikram and Tsai, Chia-Che and Khandelwal, Anurag and Pu, Qifan and Shankar, Vaishaal and Carreira, Joao and Krauth, Karl and Yadwadkar, Neeraja and others},
+  journal = {arXiv preprint arXiv:1902.03383},
+  year    = {2019},
+  pages   = {1-3}
+}
+
+@inproceedings{mcgrath2017serverless,
+  title        = {Serverless computing: Design, implementation, and performance},
+  author       = {McGrath, Garrett and Brenner, Paul R},
+  booktitle    = {2017 IEEE 37th International Conference on Distributed Computing Systems Workshops (ICDCSW)},
+  pages        = {405--410},
+  year         = {2017},
+  organization = {IEEE}
+}
+
+@inproceedings{baldini2016cloud,
+  title     = {Cloud-native, event-based programming for mobile applications},
+  author    = {Baldini, Ioana and Castro, Paul and Cheng, Perry and Fink, Stephen and Ishakian, Vatche and Mitchell, Nick and Muthusamy, Vinod and Rabbah, Rodric and Suter, Philippe},
+  booktitle = {Proceedings of the International Conference on Mobile Software Engineering and Systems},
+  pages     = {287--288},
+  year      = {2016}
+}
+
+ @misc{handy_2014,
+  url       = {https://sdtimes.com/amazon/amazon-introduces-lambda-containers/},
+  journal   = {Amazon introduces Lambda, containers at AWS re:invent},
+  publisher = {SD Times},
+  author    = {Handy, Alex},
+  year      = {2014},
+  month     = {Nov}
+} 
+
+ @misc{musgrave_2022,
+  title     = {What is AWS Lambda?},
+  url       = {https://docs.aws.amazon.com/lambda/latest/dg/welcome.html},
+  journal   = {Amazon},
+  publisher = {Europa Editions},
+  author    = {Musgrave, David},
+  year      = {2022}
+} 
+
+ @misc{musgrave_2022_runtimes,
+  title     = {Lambda runtimes},
+  url       = {https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html},
+  journal   = {Amazon},
+  publisher = {Europa Editions},
+  author    = {Musgrave, David},
+  year      = {2022}
+} 
+
+@article{PEREZ201850,
+  title    = {Serverless computing for container-based architectures},
+  journal  = {Future Generation Computer Systems},
+  volume   = {83},
+  pages    = {50-59},
+  year     = {2018},
+  issn     = {0167-739X},
+  doi      = {https://doi.org/10.1016/j.future.2018.01.022},
+  url      = {https://www.sciencedirect.com/science/article/pii/S0167739X17316485},
+  author   = {Alfonso P{\"e}rez and Germ{\"a}n Molt{\"o} and Miguel Caballer and Amanda Calatrava},
+  keywords = {Cloud computing, Serverless, Docker, Elasticity, AWS lambda},
+  abstract = {New architectural patterns (e.g. microservices), the massive adoption of Linux containers (e.g. Docker containers), and improvements in key features of Cloud computing such as auto-scaling, have helped developers to decouple complex and monolithic systems into smaller stateless services. In turn, Cloud providers have introduced serverless computing, where applications can be defined as a workflow of event-triggered functions. However, serverless services, such as AWS Lambda, impose serious restrictions for these applications (e.g. using a predefined set of programming languages or difficulting the installation and deployment of external libraries). This paper addresses such issues by introducing a framework and a methodology to create Serverless Container-aware ARchitectures (SCAR). The SCAR framework can be used to create highly-parallel event-driven serverless applications that run on customized runtime environments defined as Docker images on top of AWS Lambda. This paper describes the architecture of SCAR together with the cache-based optimizations applied to minimize cost, exemplified on a massive image processing use case. The results show that, by means of SCAR, AWS Lambda becomes a convenient platform for High Throughput Computing, specially for highly-parallel bursty workloads of short stateless jobs.}
+}
+
+ @misc{hansen_2022_fargate,
+  url       = {https://docs.aws.amazon.com/eks/latest/userguide/fargate.html},
+  journal   = {What is Fargate?},
   publisher = {AWS},
   author    = {Hansen, Niels Arthur},
   year      = {2022}

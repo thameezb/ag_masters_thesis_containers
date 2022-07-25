@@ -113,10 +113,42 @@ EKS ties into cloud-native services via adaptors and therefore expands upon the 
 EKS can also schedule tasks on both VM worker-nodes or Serverless workers\cite{hansen_2022}. 
 
 \chapter{Serverless Computing}
+
+Serverless Computing refers to a computing paradigm where cloud service providers abstract away the concept of servers (and related creation, bootstrap and configuration of said servers),
+instead creating and allocating these resources on demand automatically as required by users. Hellerstein et al. mention that serverless computing 
+\textit{offers the attractive notion of a platform in the cloud where developers simply upload their code, and the platform executes it on their behalf as needed at any scale}\cite{hellerstein2018serverless}.
+
+Serverless Computing offers the advantage of allowing developers to focus solely on their code (and not underlying infrastructure), and is generally only charged when the resource is used\cite{jonas2019cloud}.
+Serverless offerings generally connect cloud-services to one another (particularly network storage which is noticeably slower than SSDs mounted directly to a VM), 
+in addition to (by design) the lack of customization of underlying hardware choice and thus performance usually suffers when compared to VMs or bare-metal servers\cite{hellerstein2018serverlessdisadvantages}.
+
+Jonas et al. present an overview of differences between Serverless and classic \emph{Serverful} computing resources in \cite[Table 2]{jonas2019cloud}, 
+additionally illustrating where Serverless offerings layer fits in the cloud-computing stack in \cite[Figure 1]{jonas2019cloud}
+
 \section{Serverless Functions}
+McGrath and Brenner define Serverless functions as \textit{a cloud offering where application logic is split into functions and
+executed in response to events}\cite{mcgrath2017serverless}. 
+Function execution is isolated and ephemeral, thus each execution occurs independently on demand.
+Serverless functions are generally defined in three steps: an event; a trigger; and an action \cite{baldini2016cloud}. 
+These functions are designed to perform short-lived single task operations quickly, and generally have a maximum time-limit for the function to complete \cite{hellerstein2018serverlessdisadvantages}.
+
+
 \subsection{AWS Lambda Functions}
+Lambda\cite{musgrave_2022} is an AWS implementation of Serverless functions, first introduced in 2014\cite{handy_2014}.
+Lambda supports multiple runtimes such as: NodeJS, python, Ruby, go, Java, and .NET; in addition to custom run-times using a linux AMI \cite{musgrave_2022_runtimes}.
+Since late 2020, Lambda supports the running of container functions\cite{lambda}.
+
 \section{Serverless Containers}
+Serverless containers allows for the running of container workloads while, similarly to serverless functions, obfuscating the underlying hardware on which the containers run. 
+This marries the benefits of containerization, with that of the serverless computing paradigm \cite{PEREZ201850}. 
+Unlike functions, these workloads can be fully fledged long-lived applications, and are not restricted to being event triggered or time-restricted.
+
 \subsection{AWS Fargate}
+AWS defines Fargate as \emph{a technology that provides on-demand, right-sized compute capacity for containers}\cite{hansen_2022_fargate}. 
+Fargate is an AWS proprietary cloud service which allows for the provisioning and running of container-workloads on both EKS (with some restrictions) and ECS platforms. 
+
+Containers running on Fargate are isolated, and therefore do not share kernel, CPU resources, memory resources, or network interfaces with other container-workloads.
+Workloads are charged on a \textit{pay per use} policy.
 
 \chapter{Infrastructure as Code (IaC)}
 Rahman et al. define IaC as \emph{the practice to automatically configure system dependencies and to provision local and remote instances}\cite{RAHMAN201965}.
@@ -139,7 +171,7 @@ Finally tf attempts to change the current state of the service to the desired st
 
 \section{packer}
 Terraform created by HashiCorp\cite{hashicorp}, is an open-source machine image IaC build and creation tool. 
-Generally used to create \emph{golden-images} \cite{HashiCorp_packer_docs} (that is base-level machine image which contains all requirements and configuration for a given provider).
+Generally used to create \emph{golden-images} \cite{HashiCorp_packer_docs} (that is base-level machine image which contains all common requirements and configuration for a given provider).
 
 packer (similarly to Terraform) makes use of public APIs to create and configure machine images with various \textit{builders}, and benefits from the same advantages which IaC tooling provides.
 
