@@ -1,0 +1,18 @@
+﻿,ECS-Fargate,ECS-EC2,EKS-Fargate,EKS-EC2,,,Lambda,ECS-Fargate,ECS-EC2,EKS-Fargate,EKS-EC2
+Scaling 1-0-1,,,,,,Scaling 1-0-1,,3.13,2.796666667,4.66,2.2
+,3.32,2.43,4.23,2.25,,,,,ECS-EC2,,EKS-EC2
+,2.34,3.2,5.52,1.23,,Deleting Underlying Container,,,3.803333333,,2.5
+,3.73,2.76,4.23,3.12,,,,,ECS-EC2,,EKS-EC2
+,3.13,2.796666667,4.66,2.2,,Rebooting Underlying Host,,,13.02666667,,15.63
+,,,,,,,,,,,
+Deleting Underlying Container,,,,,,,,,,,
+,,4.29,,2.82,,,,,,,
+,,3.47,,2.03,,,,,,,
+,,3.65,,2.65,,,,,,,
+,,3.803333333,,2.5,,,,,,,
+,,,,,,,,,,,
+Rebooting Underlying Host,,,,,,,,,,,
+,,14.23,,16.78,,,,,,,
+,,13.65,,14.01,,,,,,,
+,,11.2,,16.1,,,,,,,
+,,13.02666667,,15.63,,,,,,,

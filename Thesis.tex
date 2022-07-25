@@ -56,6 +56,8 @@
 % Document links and bookmarks
 \usepackage{hyperref} 
 
+\usepackage{minted}
+
 % Numbering of headings down to the subsection level
 \numberingdepth{subsection}
 
@@ -79,11 +81,7 @@
 %\frontmatterMonograph 
 
 % Optional dedication
-\input{sections/dedication.tex}
-
-% Environment used to create a list of papers
-\input{sections/papers.tex}
-
+\dedication{Dedicated to all those whom tried and failed, who then tried and learnt}
 
 \begingroup
 % To adjust the indentation in your table of contents, uncomment and enter the widest numbers for each level
@@ -98,7 +96,7 @@
 
 \mainmatter
 \input{sections/introduction}
-\input{sections/background}
+\input{sections/theory}
 \input{sections/method}
 \input{sections/results}
 \input{sections/conclusion}
@@ -110,5 +108,9 @@
 \nocite{*} % Remove this for your own citations
 \bibliographystyle{IEEEtran}
 \bibliography{References}
+
+\appendix
+\include{appendices/dockerImages.tex}
+\include{appendices/packerImages.tex}
 
 \end{document}
