@@ -11,12 +11,14 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # Sysbench
 RUN  apt-get -y install curl && \
-  curl https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | bash && \
+  curl https://packagecloud.io/install/repositories/akopytov/
+    sysbench/script.deb.sh | bash && \
   apt -y install sysbench
 
 # Phoronix 
 RUN apt-get -y install php-cli php-common php-xml && \ 
-  wget https://phoronix-test-suite.com/releases/repo/pts.debian/files/phoronix-test-suite_10.8.2_all.deb && \
+  wget https://phoronix-test-suite.com/releases/repo/pts.debian/files
+    /phoronix-test-suite_10.8.2_all.deb && \
   dpkg -i phoronix-test-suite_10.8.2_all.deb
 RUN apt-get install -y build-essential zlib1g-dev 
 
