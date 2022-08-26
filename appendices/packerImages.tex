@@ -151,7 +151,8 @@ source "amazon-ebs" "ag-ret-eks" {
 
   source_ami_filter {
     filters = {
-      name                = "ubuntu-eks/k8s_1.20/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-2022*"
+      name                = "ubuntu-eks/k8s_1.20/images/
+        hvm-ssd/ubuntu-focal-20.04-amd64-server-2022*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
