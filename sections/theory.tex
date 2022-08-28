@@ -204,7 +204,9 @@ be delivered \cite{wieder2011service}.
 
 \section{Related Work}
 
-\cite{pahl2017cloud} presents a deep analysis and review of the scientific contributions in the cloud-container space over the last few years.
+This section presents an overview of related work in cloud-computing, containerization, and proposed benchmarking methodologies for both technologies. \\
+
+\noindent \cite{pahl2017cloud} presents a deep analysis and review of the scientific contributions in the cloud-container space over the last few years.
 Concluding that there is a \emph{noticeable imbalance of contribution formats compared to more mature domains}, specifically 
 \emph{the number of journal publications is low} and \emph{higher number of use cases than technology solutions}. 
 Furthermore it notes that \emph{proven technologies are lacking to fully support container architectures for cloud environments}. \\
@@ -222,13 +224,19 @@ which include CPU performance, Memory throughput, Storage read/write performance
 \noindent \cite{KOZHIRBAYEV2017175} presents a general performance comparison of container-based technologies in a cloud environment. 
 It too concludes that \emph{were roughly no overheads on memory utilization or CPU}, however noting \emph{I/O and operating system interactions incurred some overheads}.  \\
 
-\noindent \cite{8500285} presents a detailed network comparison between the Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP). \\
+\noindent \cite{8500285} presents a detailed network comparison between the Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP). 
+Concluding that irrespective of the provider, network performance remains on par for all three providers 
+(although AWS does occasionally seem to perform marginally better under specific circumstances). Encryption is noted to have a significant cost in performance at a CNI level. \\
 
 \noindent \cite{quint2016overcome} speaks to the complexity of running container-workloads within a cloud environment due to the various differing solutions which currently exist.
 Furthermore, it identifies the lack of standards in the space, which leads to vendor lock-in and missing features. \\
 
-\noindent \cite{7185168} provides a comprehensive summary of cloud-orchestration approach  es related to running container-workloads. It presents two orchestration solutions, namely 
+\noindent \cite{7185168} provides a comprehensive summary of cloud-orchestration approaches related to running container-workloads. It presents two orchestration solutions, namely 
 \emph{Orchestration of software services} and \emph{Orchestration of hardware services}. 
-Goes on to mention the numerous vendor specific solutions which exist in the space, noting 
+And goes on to mention the numerous vendor specific solutions which exist in the space, noting 
 \emph{a very fragmented offer of container orchestrators that makes difficult to new small IT companies to deploy them (containers) in production.}
-Finally noting the lack of standardization in the space (specifically regarding monitoring of workloads).
+Finally noting the lack of standardization in the space (specifically regarding monitoring of workloads). \\ 
+
+\noindent This thesis builds upon the above-mentioned related work by performing research specifically focusing on container-orchestration 
+in the cloud, breaking down the various solutions to better differentiate their benefits and drawbacks.
+The solution also proposes a benchmarking methodology specifically focusing on cloud-container workloads, built upon existing benchmarking suites for general container workloads.
