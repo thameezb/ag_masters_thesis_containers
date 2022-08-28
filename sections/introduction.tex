@@ -6,14 +6,15 @@
 Containerization (or OS-Level Virtualization) revolutionized the business world in 2013\cite{virtualization} with the introduction of Docker\cite{docker_usage}.
 Coupled with the high adoption rate of containerization saw the rapid adoption of container-orchestration tools (with the most popular being Kubernetes\cite{k8s}).
 
-In parallel to the adoption of the aforementioned technologies, cloud-computing providers matured from offering basic compute, storage,
-and networking offerings\cite{barr_2009}; to more managed \textit{cloud-native} services. Amazon Web Services (AWS),
+In parallel to the adoption of containerization, cloud-computing technologies matured from basic compute, storage,
+and networking services\cite{barr_2009} to more managed \textit{cloud-native} services. Amazon Web Services (AWS),
 for example announced an early version of their custom container-orchestration tool (ECS) in 2015\cite{ecs},
 expanding their container-orchestration offerings with a serverless container platform (Fargate) in 2017\cite{fargate},
 and a managed Kubernetes Engine (EKS) in 2018\cite{eks}.
 More recently, AWS has announced the ability to run containers as Lambdas (Serverless Functions) in late 2020\cite{lambda}.
 
-\noindent These shifts in technological maturity enables workloads to fully leverage the advantages of containerization, with those offered by the cloud.
+\noindent These shifts in technological maturity enables workloads to fully leverage the advantages of containerization, 
+with those offered by the cloud.
 Unfortunately, the partition between the cloud offered container platforms are not entirely clear and rather fuzzy
 (this includes performance, security, efficiency, latency and cost).\\
 
