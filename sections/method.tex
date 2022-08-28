@@ -13,7 +13,14 @@ Performance and Latency, Cost, Resilience, and Ease-of-Use.
 
 \section{System Design and Architecture}
 
-Each solution was evaluated in a controlled AWS \emph{VPC} in a single region (af-south-1), spread across three \emph{AZs} (where applicable).
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{images/archDiagram.png}
+  \caption{General Overview of System Architecture}
+  \label{fig:archDiagram}
+\end{figure}
+
+As illustrated by Figure \ref{fig:archDiagram} each solution was evaluated in a controlled AWS \emph{VPC} in a single region (af-south-1), spread across three \emph{AZs} (where applicable).
 Broad \textit{IAM} roles were created to grant required resources the correct permissions when accessing other resources.
 An open \textit{SG} was attached to each resource to remove network restrictions as a potential block during testing.
 The required cloud infrastructure was be deployed using \emph{Terraform} to ensure \emph{IaaC} principles are followed (and to maintain the \emph{correctness} of the testing environments).
@@ -34,8 +41,8 @@ To create a baseline, all benchmarks were performed against an existing on-premi
       \item \emph{tool-deploy-eks}\cite{thameezb_2022} --- deploys an EKS cluster with all required dependencies
       \item \emph{tool-deploy-platform}\cite{thameezb} --- deploy an ECS cluster and all required dependencies, deploys benchmarking-suite, and tool-container-benchmark
 \end{itemize}
-\emph{Docker} image definitions can be found in Appendix\ref{appendix:docker_images}.
-\emph{AMI} build-scripts can be found as \emph{packer} code in Appendix\ref{appendix:packer_ami_defintions}.
+\emph{Docker} image definitions can be found in Appendix \ref{appendix:docker_images}.
+\emph{AMI} build-scripts can be found as \emph{packer} code in Appendix \ref{appendix:packer_ami_defintions}.
 Additionally all other tooling or applications used can be found on GitHub\cite{bodhanya_2022}.
 
 \section{Experimentation}
