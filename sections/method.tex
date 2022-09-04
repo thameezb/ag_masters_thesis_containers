@@ -1,24 +1,26 @@
-\part{Methodology and System Architecture}
+\chapter{Methodology, System Architecture and Experimentation Process}
 \label{sec:method}
 
 This chapter aims to clearly explain the research process used to analyze the problem and potential solutions.
 Additionally it expands on the experimentation process undertaken in detail.
 
-\chapter{Methodology}
+\section{Methodology}
 A broad investigation --- in the form of a literature-review was undertaken --- to find, understand, compare and document the various cloud container platforms are currently available.
 Additionally, interviews were performed at \emph{Allan Gray} focusing on tooling, architecture and deployment process utilized by the company.
 
 \noindent \newline Each viable solution was then evaluated under the following four metrics:
-\begin{itemize}
-  \item Performance and Latency
-  \item Cost
-  \item Resilience
-  \item Ease-of-Use
-\end{itemize}
+Performance and Latency, Cost, Resilience, and Ease-of-Use.
 
-\chapter{System Design and Architecture}
+\section{System Design and Architecture}
 
-Each solution was evaluated in a controlled AWS \emph{VPC} in a single region (af-south-1), spread across three \emph{AZs} (where applicable).
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{images/archDiagram.png}
+  \caption{General Overview of System Architecture}
+  \label{fig:archDiagram}
+\end{figure}
+
+As illustrated by Figure \ref{fig:archDiagram} each solution was evaluated in a controlled AWS \emph{VPC} in a single region (af-south-1), spread across three \emph{AZs} (where applicable).
 Broad \textit{IAM} roles were created to grant required resources the correct permissions when accessing other resources.
 An open \textit{SG} was attached to each resource to remove network restrictions as a potential block during testing.
 The required cloud infrastructure was be deployed using \emph{Terraform} to ensure \emph{IaaC} principles are followed (and to maintain the \emph{correctness} of the testing environments).
@@ -39,17 +41,17 @@ To create a baseline, all benchmarks were performed against an existing on-premi
       \item \emph{tool-deploy-eks}\cite{thameezb_2022} --- deploys an EKS cluster with all required dependencies
       \item \emph{tool-deploy-platform}\cite{thameezb} --- deploy an ECS cluster and all required dependencies, deploys benchmarking-suite, and tool-container-benchmark
 \end{itemize}
-\emph{Docker} image definitions can be found in Appendix\ref{appendix:docker_images}.
-\emph{AMI} build-scripts can be found as \emph{packer} code in Appendix\ref{appendix:packer_ami_defintions}.
+\emph{Docker} image definitions can be found in Appendix \ref{appendix:docker_images}.
+\emph{AMI} build-scripts can be found as \emph{packer} code in Appendix \ref{appendix:packer_ami_defintions}.
 Additionally all other tooling or applications used can be found on GitHub\cite{bodhanya_2022}.
 
-\chapter{Experimentation}
-\section{Performance and Latency}
+\section{Experimentation}
+\subsection{Performance and Latency}
 Performance and Latency were measured using two forms of benchmarking, the first following industry standard performance benchmarking using the phoronix-test-suite\cite{phoronix_test_suite} tool.
 With the second being a custom-built application benchmark, which was able to focus on \emph{CRUD} based activities.
 Each of these benchmarks were run at least three times, with the outputted results being averaged out.
 
-\subsection{phoronix-test-suite}
+\subsubsection{phoronix-test-suite}
 The phoronix-test-suite is a high-customizable \emph{OSS} tool which acts as a wrapper to run various open-source benchmarking suites hosted by \emph{OpenBenchmarking.org}\cite{openbenchmarking.org_2020}.
 A custom test-suite was created which targets specific aspects of a container-platform which is relevant to this project (and builds upon a previous testing methodology used by Potdar and Narayan\cite{POTDAR20201419}).
 The selected tests are:
@@ -73,7 +75,7 @@ Results were stored to \emph{S3}.
 
 Tooling code is available on GitHub at\cite{tool_benchmarking_suite}.
 
-\subsection{tool-container-benchmark}
+\subsubsection{tool-container-benchmark}
 \textit{tool-container-benchmark} is a custom built open-source benchmarking tool. This tool performs basic \emph{CRUD} operations against a Database of choice,
 which mimics a portion of a typical enterprise workload. The tool starts of by clearing all projects in a specific table, creates a basic data-set within the table,
 and performs a set of randomly chosen \textit{events} against a random project. An event is defined to be either a creation, update or delete operation.
@@ -88,20 +90,20 @@ Allowed configuration:
 
 Tooling code is available on GitHub at\cite{tool_container_benchmark}.
 
-\section{Cost}
+\subsection{Cost}
 Cost was measured in US Dollars using AWS's built in Cloud Cost Explorer tool\cite{blocher_juras_smith_2022}, with each system matched to cost using identification tags.
 The total cost of running \textit{tool-container-benchmark} with \textit{30000} events (including all other required dependencies)
 was measured per solution.
 Additionally, a forecasted costing of running a long-lived service per solution (a single container which runs twenty-four hours a day for thirty days reserving .256 vCPU and 512MB of RAM)
 was calculated using AWS's Pricing Calculator\cite{venning_2020} tool.
 
-\section{Resilience and Reliability}
+\subsection{Resilience and Reliability}
 Resilience and Reliability were measured using \textit{TTR} when performing standard \textit{Chaos-Engineering} processes for container workloads.
 These included evaluating the solution's ability to handle sudden scaling-in of container-workloads (that is to route network traffic to healthy replicas or respond to an unhealthy container by starting a new replica),
 and actual deletion of container-workloads at a host level (that is stopping the container at a host-level and observing the solution's ability to recover) where possible.
 Additionally an actual reboot of the underlying host (for \textit{Virtual Machine} based workloads) was also performed.
 The \textit{SLA}'s and underlying architecture would also be taken into consideration when discussing this aspect.
 
-\section{Ease-of-Use}
+\subsection{Ease-of-Use}
 Ease-of-Use (being a highly subjective metric) was evaluated in terms of complexity to configure the solution environment, additional tooling required to deploy to said environment,
 and finally the amount of changes required to deploy a container workload using this solution, with unit \textit{time} being the unit of comparison.

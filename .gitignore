@@ -10,4 +10,5 @@
 *.toc
 *.lof
 *.lot
+*.bst
 _minted-*

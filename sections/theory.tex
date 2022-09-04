@@ -1,62 +1,62 @@
-\part{Theory, Terminology, and Related Work}
+\chapter{Theory, Terminology, and Related Work}
 \label{sec:theory}
-
 Before analyzing the problem or providing a solution,
 this chapter defines briefly the technologies and terminology used in this project.
 Additionally an overview of related work is presented.
 
-\chapter{Cloud Computing}
+\section{Cloud Computing}
 First coined in 1997\cite{ray2018} in an address to the INFORMS Annual meet, 
-Chellapa \cite{chellappa1997intermediaries} defined Cloud Computing as a
-\emph{computing paradigm where the boundaries of computing will be determined by economic rationale rather than technical limits alone}. 
+Chellapa defined Cloud Computing as a `computing paradigm where the boundaries of computing will be determined by economic rationale rather than technical limits alone.'\cite{chellappa1997intermediaries}
 
-Haris and Kahn\cite{haris2018systematic} provide a more expanded definition as \emph{an advancement of various combined technologies such as 
+Haris and Kahn provide a more expanded definition as `an advancement of various combined technologies such as 
 Distributed computing, Utility computing, virtualization etc, to provide IT resources and services over an internet on pay as per use manner. 
 These services are available to the user on demand basis at very low cost and charged at the time of the release of resources. 
-These services include storage, processing, network, application, etc}. 
+These services include storage, processing, network, application, etc.'\cite{haris2018systematic} \\
 
-\section{Cloud Computing technologies used in this project}
+\noindent For the sake of this project, \emph{cloud computing} refers to computational resources made available to end-users on-demand over the internet, 
+usually charged per resource consumed.
 
-\subsection{Virtual Private Cloud (VPC)}
-AWS defines a VPC as a virtual network which closely resembles a traditional network that would be operated in an \emph{on-premise} data center, 
-with the benefits of using the scalable infrastructure of AWS, wherein cloud resources can be launched.\cite{awsdocs_2022}
-Beach et al. further explain that a \emph{VPC allows you to configure a custom network topology, as well as manage IP routing and security. 
-A network topology is the structure of the network and controls how data flows between nodes.}\cite{Beach2019}
+\subsection{Cloud Computing technologies used in this project}
 
-\subsection{Regions \& Availability Zones (AZ)}
-Carty defines regions as \emph{geographic locations in which public cloud service providers' data centers reside} 
-and Availability Zones as \emph{isolated locations within data center regions from which public cloud services originate and operate}.\cite{carty_2015}
+\subsubsection{Virtual Private Cloud (VPC)}
+AWS defines a VPC as `a virtual network which closely resembles a traditional network that would be operated in an \emph{on-premise} data center, 
+with the benefits of using the scalable infrastructure of AWS, wherein cloud resources can be launched'\cite{awsdocs_2022}.
+In essence, a VPC allows an end-user to design, configure, and manage aspects of a virtual network stack (which includes the topology, IP Routing, and security, amongst others) 
+which will contain the computing resources required.\cite{Beach2019}.
+
+\subsubsection{Regions \& Availability Zones (AZ)}
+Carty defines regions as `geographic locations in which public cloud service providers' data centers reside'
+and Availability Zones as `isolated locations within data center regions from which public cloud services originate and operate.'\cite{carty_2015}
 
 That is to say a public cloud service provider could have multiple isolated data-centers (zones) within a specific geographical region of operation.
 Cloud resources can be deployed to various regions (and by extension specific zones) for redundancy and availability.
 
-\subsection{Elastic Compute Cloud (EC2)}
+\subsubsection{Elastic Compute Cloud (EC2)}
 Amazon Elastic Compute Cloud (Amazon EC2) provides scalable computing capacity in the Amazon Web Services (AWS) Cloud\cite{awsdocs_whatsisec2}.
 It achieves this by allowing the creation of on-demand \emph{Virtual Machines} in the cloud called \emph{instances}\cite{carty_2019}. 
 These instances can be of varying specifications \cite{daly_2022} and run various operating systems \cite{awsdocs_ec2os} per requirement.
 
-\subsubsection{Amazon Machine Image (AMI)}
+\paragraph{Amazon Machine Image (AMI)}
 An Amazon Machine Image (AMI) is a template that contains a software configuration (for example, an operating system, an application server, and applications)\cite{awsdocs_ami}.
 AMIs are published by AWS, software vendors, or can be created by users themselves to contain specific application software or configuration required per instance.
 These templates are used to create EC2 instances\cite{Beach2014}. 
 
-\subsubsection{Auto-Scaling Groups (ASG)}
-AWS defines an ASG as a logical resource which \emph{contains a collection of Amazon EC2 instances that are treated as a logical grouping for the purposes of automatic scaling and management} \cite{awsdocs_asg}.
+\paragraph{Auto-Scaling Groups (ASG)}
+AWS defines an ASG as a logical resource which `contains a collection of Amazon EC2 instances that are treated as a logical grouping for the purposes of automatic scaling and management.'\cite{awsdocs_asg}.
 ASGs helps you ensure that you have the correct number of Amazon EC2 instances available to handle the load for your application by scaling up or down the number of active instances based on requirement \cite{amazon_asg_docs}. 
 ASGs perform periodic health-checks on the instances within the group, replacing unhealthy instances with new instances to maintain availability.
 
-\subsection{Security Groups (SG)}
-AWS defines an SG as a logical resource which \emph{controls the traffic that is allowed to reach and leave the resources that it is associated with} \cite{amazon_2016}.
+\subsubsection{Security Groups (SG)}
+AWS defines an SG as a logical resource which `controls the traffic that is allowed to reach and leave the resources that it is associated with.'\cite{amazon_2016}.
 In essence it is a per instance set of \emph{stateful} rules which defines the allowed ingress and egress network activity per instance. 
 
-\subsection{Relation Database Service (RDS)}
-Lutkevich \cite{lutkevich_2021} defines RDS as \emph{a managed SQL database service provided by Amazon Web Services (AWS). Amazon RDS supports an array of database engines to store and organize data. 
-It also helps with relational database management tasks, such as data migration, backup, recovery and patching.}
-
+\subsubsection{Relation Database Service (RDS)}
+Amazon \emph{RDS} is a relational (SQL) database service entirely managed by AWS. Managed here refers to bootstraping DB clusters on behalf of end-users, in addition 
+to offering assistance with tasks as data migration, backups, and patching \cite{lutkevich_2021}.
 RDS supports MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server \cite{beach2019relational}.
 
-\chapter{Virtual Machines}
-Defined by Popek and Goldburg in 1974 as \emph{an efficient, isolated duplicate of a real computer machine}\cite{popek_1974}. 
+\section{Virtual Machines}
+Defined by Popek and Goldburg in 1974 as `an efficient, isolated duplicate of a real computer machine'\cite{popek_1974}. 
 A VM is resource which uses software (by emulating physical hardware) to run operating systems, programs, and applications. 
 Multiple isolated VMs can run as \textit{guests} on a single physical \textit{host} system, with each \textit{guest} VM reserving a portion of the underlying
 \textit{host}'s hardware. 
@@ -69,27 +69,27 @@ the sharing and reservation of underlying hardware results in a \textit{host} sy
 while leading to unpredictable performance for \textit{guest} VMs if the \textit{host} is under load. 
 Finally due to the overhead of virtualization, the \textit{guest} VM generally performs slower than non-virtualized environments\cite{Martinovic}.
 
-\chapter{Containerization}
+\section{Containerization}
 
-Containerization (or OS-Level Virtualization \cite{10.5555/1571423}) is defined by Dua et al. as 
-\emph{a light weight operating system running inside the host system, running instructions native to the core
-CPU, eliminating the need for instruction level emulation or just in time compilation}\cite{6903537}.
+Containerization (or OS-Level Virtualization \cite{10.5555/1571423}) is defined by Dua \emph{et al.} as 
+`a light weight operating system running inside the host system, running instructions native to the core
+CPU, eliminating the need for instruction level emulation or just in time compilation'\cite{6903537}.
 
 Containers achieve the same benefits of VMs (including isolation) without the overhead of virtualization, therefore maintaining portability 
 without the significant drop in performance seen by VMs \cite{POTDAR20201419}.
 
 A more thorougher comparison between containers and VMs is presented in \cite[Table 1]{6903537}.
 
-\section{Docker}
+\subsection{Docker}
 Docker \cite{docker} is an open-source container virtualization tool. 
 It defines a standard for the building of container images (via text templates called \textit{Dockerfiles} which describe a container and its dependencies),
 the distribution of container-images, and the creation and running of containers\cite{7093032}.
 
-Rad et al. \cite{rad2017introduction} provide a deep analysis of Docker, including a break-down of the Docker architecture presented in \cite[Fig. 1]{rad2017introduction}
+Rad \emph{et al.} \cite{rad2017introduction} provide a deep analysis of Docker, including a break-down of the Docker architecture presented in \cite[Fig. 1]{rad2017introduction}
 
-\section{Kubernetes (k8s)}
+\subsection{Kubernetes (k8s)}
 Kubernetes \cite{kubernetes} is an open-source tool for managing containerized services. 
-Originally created by Google as Borg \cite{10.1145/2741948.2741964} abd being open-sourced in 2014\cite{metz_2014}. 
+Originally created by Google as Borg \cite{10.1145/2741948.2741964} and being open-sourced in 2014\cite{metz_2014}. 
 
 Docker is sufficient as a tool to run container-workloads locally or on single-system architectures when running low number of containers.
 However, to fully leverage the power of containers, especially when running high number of containers across multiple host systems, additional features are required.
@@ -99,59 +99,59 @@ and secret and configuration management \cite{kubernetes_2022}.
 Luksa \cite{luksa2017kubernetes} presents a deep-dive exploration of the k8s architecture and design, including the basic building blocks as illustrated by \cite[Figure 1.9]{luksa2017kubernetes}.
 
 
-\section{AWS Elastic Container Service}
+\subsection{AWS Elastic Container Service}
 ECS is a custom cloud-native fully-managed container-orchestration service launched by AWS in 2014 \cite{ecs}.
 ECS relies on the creation of an underlying cluster upon which container workloads are run.
 ECS wraps container-workloads in an abstraction called a \textit{task}, which houses additional information required by the orchestration tool.
 ECS ties in natively to other cloud-services (which include identity management, service discovery and load-balancing).
 ECS can schedule tasks on both VM and Serverless platforms \cite{ecs_2022}.
 
-\section{AWS Elastic Kubernetes Service}
+\subsection{AWS Elastic Kubernetes Service}
 EKS is a cloud fully-managed Kubernetes service launched by AWS in 2018 \cite{eks}. 
 EKS obfuscates the control-plane portion of the k8s cluster, thus only exposing the worker-nodes to users.
 EKS ties into cloud-native services via adaptors and therefore expands upon the standard kubernetes functionality.
 EKS can also schedule tasks on both VM worker-nodes or Serverless workers\cite{hansen_2022}. 
 
-\chapter{Serverless Computing}
+\section{Serverless Computing}
 
-Serverless Computing refers to a computing paradigm where cloud service providers abstract away the concept of servers (and related creation, bootstrap and configuration of said servers),
-instead creating and allocating these resources on demand automatically as required by users. Hellerstein et al. mention that serverless computing 
-\textit{offers the attractive notion of a platform in the cloud where developers simply upload their code, and the platform executes it on their behalf as needed at any scale}\cite{hellerstein2018serverless}.
+Serverless Computing refers to a computing paradigm where cloud service providers abstract away the concept of servers (and related creation, bootstrap, and configuration of said servers),
+instead creating and allocating these resources on demand automatically as required by users. A unique benefit of the paradigm allows code to be simply uploaded to the cloud, where it is 
+executed and scaled on demand when required\cite{hellerstein2018serverless}.
 
 Serverless Computing offers the advantage of allowing developers to focus solely on their code (and not underlying infrastructure), and is generally only charged when the resource is used\cite{jonas2019cloud}.
 Serverless offerings generally connect cloud-services to one another (particularly network storage which is noticeably slower than SSDs mounted directly to a VM), 
 in addition to (by design) the lack of customization of underlying hardware choice and thus performance usually suffers when compared to VMs or bare-metal servers\cite{hellerstein2018serverlessdisadvantages}.
 
-Jonas et al. present an overview of differences between Serverless and classic \emph{Serverful} computing resources in \cite[Table 2]{jonas2019cloud}, 
+Jonas \emph{et al.} present an overview of differences between Serverless and classic \emph{Serverful} computing resources in \cite[Table 2]{jonas2019cloud}, 
 additionally illustrating where Serverless offerings layer fits in the cloud-computing stack in \cite[Figure 1]{jonas2019cloud}
 
-\section{Serverless Functions}
-McGrath and Brenner define Serverless functions as \textit{a cloud offering where application logic is split into functions and
-executed in response to events}\cite{mcgrath2017serverless}. 
+\subsection{Serverless Functions}
+McGrath and Brenner define Serverless functions as `a cloud offering where application logic is split into functions and
+executed in response to events'\cite{mcgrath2017serverless}. 
 Function execution is isolated and ephemeral, thus each execution occurs independently on demand.
 Serverless functions are generally defined in three steps: an event; a trigger; and an action \cite{baldini2016cloud}. 
 These functions are designed to perform short-lived single task operations quickly, and generally have a maximum time-limit for the function to complete \cite{hellerstein2018serverlessdisadvantages}.
 
 
-\subsection{AWS Lambda Functions}
+\subsubsection{AWS Lambda Functions}
 Lambda\cite{musgrave_2022} is an AWS implementation of Serverless functions, first introduced in 2014\cite{handy_2014}.
 Lambda supports multiple runtimes such as: NodeJS, python, Ruby, go, Java, and .NET; in addition to custom run-times using a linux AMI \cite{musgrave_2022_runtimes}.
 Since late 2020, Lambda supports the running of container functions\cite{lambda}.
 
-\section{Serverless Containers}
+\subsection{Serverless Containers}
 Serverless containers allows for the running of container workloads while, similarly to serverless functions, obfuscating the underlying hardware on which the containers run. 
 This marries the benefits of containerization, with that of the serverless computing paradigm \cite{PEREZ201850}. 
 Unlike functions, these workloads can be fully fledged long-lived applications, and are not restricted to being event triggered or time-restricted.
 
-\subsection{AWS Fargate}
-AWS defines Fargate as \emph{a technology that provides on-demand, right-sized compute capacity for containers}\cite{hansen_2022_fargate}. 
+\subsubsection{AWS Fargate}
+AWS defines Fargate as `a technology that provides on-demand, right-sized compute capacity for containers'\cite{hansen_2022_fargate}. 
 Fargate is an AWS proprietary cloud service which allows for the provisioning and running of container-workloads on both EKS (with some restrictions) and ECS platforms. 
 
 Containers running on Fargate are isolated, and therefore do not share kernel, CPU resources, memory resources, or network interfaces with other container-workloads.
 Workloads are charged on a \textit{pay per use} policy.
 
-\chapter{Infrastructure as Code (IaC)}
-Rahman et al. define IaC as \emph{the practice to automatically configure system dependencies and to provision local and remote instances}\cite{RAHMAN201965}.
+\section{Infrastructure as Code (IaC)}
+Rahman \emph{et al.} define IaC as `the practice to automatically configure system dependencies and to provision local and remote instances'\cite{RAHMAN201965}.
 IaC allows you to build, change, and manage your infrastructure in a safe, consistent, and repeatable way by defining resource configurations that you can version, reuse, and share\cite{hashicorp_tf_iac}.
 
 IaC allows for easy deployment of identical resources to multiple environments, 
@@ -160,7 +160,7 @@ can follow standard code review processes, and can make use of a source-control 
 Common IaC tools include: chef\cite{chef}, puppet\cite{puppet}, ansible\cite{ansible}, Terraform\cite{terraform}, and packer\cite{packer}. 
 This project will be utilizing Terraform and packer.
  
-\section{Terraform (tf)}
+\subsection{Terraform (tf)}
 Terraform created by HashiCorp\cite{hashicorp}, is an open-source IaC software tool. 
 tf scripts are written in HashiCorp Configuration Language (HCL) or JSON, and can target both cloud and on-premise resources.
 tf utilizes \textit{providers} to communicate with services via their APIs, therefore tf is extendible to any service with public APIs. 
@@ -169,43 +169,45 @@ Terraform uses a declarative configuration model to describe a desired final sta
 and compares it to the saved state (that is the state at the end of the last deployment). Any external changes are noted and reverted to that which is declared in code.
 Finally tf attempts to change the current state of the service to the desired state declared by the user by making the required API calls.
 
-\section{packer}
+\subsection{packer}
 Terraform created by HashiCorp\cite{hashicorp}, is an open-source machine image IaC build and creation tool. 
 Generally used to create \emph{golden-images} \cite{HashiCorp_packer_docs} (that is base-level machine image which contains all common requirements and configuration for a given provider).
 
 packer (similarly to Terraform) makes use of public APIs to create and configure machine images with various \textit{builders}, and benefits from the same advantages which IaC tooling provides.
 
 
-\chapter{Other Terms and Concepts}
-\section*{Rancher Kubernetes Engine (RKE)}
+\section{Other Terms and Concepts}
+\subsection*{Rancher Kubernetes Engine (RKE)}
 RKE is a Kubernetes distribution which runs entirely using Docker containers \cite{rke}. 
 
-\section*{LZMA}
+\subsection*{LZMA}
 LZMA compression is a type of data-compression algorithm.
 It was designed by Igor Pavlov as part of the 7zip \cite{pavlov_2022} project and was first implemented in 1998.
 The name \textit{LZMA} stands for \textit{Lempel-Ziv Markov chain Algorithm}\cite{winzip_2021}
 
-\section*{CRUD}
+\subsection*{CRUD}
 In computer programming, Create, Read, Update, and Delete are the four basic operations of persistent storage\cite{martin1983managing}.
 
-\section*{Orchestration}
+\subsection*{Orchestration}
 Orchestration is the automated configuration, coordination, and management of computer systems and software\cite{erl1900service}.
 
-\section*{Chaos-Engineering}
+\subsection*{Chaos-Engineering}
 Chaos Engineering is the discipline of experimenting on a system in order to build confidence in the system's capability to withstand turbulent conditions in production\cite{hochstein_2019}.
 
-\section*{Time-to-recover (TTR)}
+\subsection*{Time-to-recover (TTR)}
 The measure of time between a service being down, until service is restored.
 
-\section*{Service Level Agreements (SLAs)}
+\subsection*{Service Level Agreements (SLAs)}
 Service Level Agreements (SLAs) are a common way to formally specify the exact
 conditions (both functional and non-functional) under which services are or should
 be delivered \cite{wieder2011service}.
 
 
-\chapter{Related Work}
+\section{Related Work}
 
-\cite{pahl2017cloud} presents a deep analysis and review of the scientific contributions in the cloud-container space over the last few years.
+This section presents an overview of related work in cloud-computing, containerization, and proposed benchmarking methodologies for both technologies. \\
+
+\noindent \cite{pahl2017cloud} presents a deep analysis and review of the scientific contributions in the cloud-container space over the last few years.
 Concluding that there is a \emph{noticeable imbalance of contribution formats compared to more mature domains}, specifically 
 \emph{the number of journal publications is low} and \emph{higher number of use cases than technology solutions}. 
 Furthermore it notes that \emph{proven technologies are lacking to fully support container architectures for cloud environments}. \\
@@ -223,13 +225,19 @@ which include CPU performance, Memory throughput, Storage read/write performance
 \noindent \cite{KOZHIRBAYEV2017175} presents a general performance comparison of container-based technologies in a cloud environment. 
 It too concludes that \emph{were roughly no overheads on memory utilization or CPU}, however noting \emph{I/O and operating system interactions incurred some overheads}.  \\
 
-\noindent \cite{8500285} presents a detailed network comparison between the Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP). \\
+\noindent \cite{8500285} presents a detailed network comparison between the Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP). 
+Concluding that irrespective of the provider, network performance remains on par for all three providers 
+(although AWS does occasionally seem to perform marginally better under specific circumstances). Encryption is noted to have a significant cost in performance at a CNI level. \\
 
 \noindent \cite{quint2016overcome} speaks to the complexity of running container-workloads within a cloud environment due to the various differing solutions which currently exist.
 Furthermore, it identifies the lack of standards in the space, which leads to vendor lock-in and missing features. \\
 
-\noindent \cite{7185168} provides a comprehensive summary of cloud-orchestration approach  es related to running container-workloads. It presents two orchestration solutions, namely 
+\noindent \cite{7185168} provides a comprehensive summary of cloud-orchestration approaches related to running container-workloads. It presents two orchestration solutions, namely 
 \emph{Orchestration of software services} and \emph{Orchestration of hardware services}. 
-Goes on to mention the numerous vendor specific solutions which exist in the space, noting 
+And goes on to mention the numerous vendor specific solutions which exist in the space, noting 
 \emph{a very fragmented offer of container orchestrators that makes difficult to new small IT companies to deploy them (containers) in production.}
-Finally noting the lack of standardization in the space (specifically regarding monitoring of workloads).
+Finally noting the lack of standardization in the space (specifically regarding monitoring of workloads). \\ 
+
+\noindent This thesis builds upon the above-mentioned related work by performing research specifically focusing on container-orchestration 
+in the cloud, breaking down the various solutions to better differentiate their benefits and drawbacks.
+The solution also proposes a benchmarking methodology specifically focusing on cloud-container workloads, built upon existing benchmarking suites for general container workloads.
