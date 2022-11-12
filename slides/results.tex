@@ -2,13 +2,19 @@
 
 \begin{frame}
   \Frametitle{Viable Solutions}
-
+  \vspace{15pt}
   \begin{itemize}
-    \item Introduction and Problem Description
-    \item Methodology and Process
-    \item Results and Discussion  
-    \item Conclusion and Future Work
-    \item Questions
+    \item \bullettext{AWS Lambda (representing \textit{Serverless Functions})}
+    \item \bullettext{AWS ECS (representing \textit{Cloud Native})}
+          \begin{itemize}
+            \item \bullettext{running on EC2 (representing \textit{Virtual Machines})}
+            \item \bullettext{running on Fargate (representing \textit{Serverless Containers})}
+          \end{itemize}
+    \item \bullettext{AWS EKS (representing \textit{Kubernetes})}
+          \begin{itemize}
+            \item \bullettext{running on EC2 (representing \textit{Virtual Machines})}
+            \item \bullettext{running on Fargate (representing \textit{Serverless Containers})}
+          \end{itemize}
   \end{itemize}
 
   \includegraphics[keepaspectratio,width=\textwidth,height=\textheight]{aws_containerOptions}  
