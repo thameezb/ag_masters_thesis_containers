@@ -158,3 +158,7 @@
         \end{frame}
     }
 }
+
+\newcommand{\bullettext}[1]{
+    \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\textls[60]{\normalsize #1}
+}
