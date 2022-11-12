@@ -69,6 +69,7 @@
         \vspace*{\fill}
         \begin{center}
             \usebeamerfont*{title} \textls[90]{\MakeUppercase{\inserttitle}}\par
+            \vspace{5pt}
             \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\textls[150]{\small \MakeUppercase{\insertsubtitle}}\par
             \vspace{15pt}
             \usebeamerfont{normal text}\usebeamercolor[fg]{normal text}\textls[150]{\footnotesize \MakeUppercase{\textbf{Student}: \insertauthor}}\par
