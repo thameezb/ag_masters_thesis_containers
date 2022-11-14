@@ -124,8 +124,8 @@
             \frametitle[center]{\LARGE {\textls[90]{\MakeUppercase{#1}}}}
 
             \begin{center}
-                \includegraphics<1>[height=4.5cm]{{#3}} \par
-                \vspace{0.5cm}
+                \includegraphics<1>[height=6cm]{{#3}} \par
+                \vspace{0.3cm}
                 \scriptsize
                 \textls[150]{\MakeUppercase{#2}}
             \end{center}

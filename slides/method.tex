@@ -2,28 +2,70 @@
 
 \begin{frame}
   \Frametitle{Methodology}
-  
+
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item \bullettext{Investigation}
+        \begin{itemize}
+          \item \bullettext{Literature Review}
+          \item \bullettext{Interviews}
+        \end{itemize}
+        \item \bullettext{Experimentation}
+      \end{itemize}
+
+    \column{0.5\textwidth}
+      \includegraphics[keepaspectratio,width=\textwidth,height=\textheight]{The_Scientific_Method.png}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
   \Frametitle{System Design and Architecture}
 
   \begin{columns}
-      \column{0.4\textwidth}
-      \begin{itemize}
-      \item Bullet
-      \end{itemize}
+      \column{0.5\textwidth}
+        \begin{itemize}
+          \item{\bullettext{Network:}}
+          \begin{itemize}
+            \item \bullettext{Controlled VPC}
+            \item \bullettext{Single Region - \textit{af-south-1}}
+            \item \bullettext{Three Availablilty Zones}
+          \end{itemize}
+          \item \bullettext{EC2 instances of type \textit{m5.2xlarge}}
+          \item \bullettext{Results written and stored in S3 Buckets}
+          \item \bullettext{Database: RDS (MSSQL)}
+          \item \bullettext{Deployed using \textit{terraform}}
+        \end{itemize}
 
-      \column{0.6\textwidth}
-      \includegraphics[keepaspectratio,width=\textwidth,height=\textheight]{archDiagram}
+      \column{0.5\textwidth}
+        \includegraphics[keepaspectratio,width=\textwidth,height=\textheight]{archDiagram}
     \end{columns}
   
 \end{frame}
-\fullimage{archDiagram}
 
+\fullimage{archDiagram}
 
 \begin{frame}
   \Frametitle{Experimentation Process}
-
+  \begin{itemize}
+    \item \bullettext{Performance and Latency}
+    \begin{itemize}
+      \item \bullettext{phoronix-test-suite}
+      \item \bullettext{tool-container-benchmark}
+    \end{itemize}
+    \item \bullettext{Cost}
+    \begin{itemize}
+      \item \bullettext{Cloud Cost Explorer}
+    \end{itemize}
+    \item \bullettext{Resilience and Reliability}
+    \begin{itemize}
+      \item \bullettext{Chaos-Engineering}
+    \end{itemize}
+    \item \bullettext{Ease-of-Use}
+    \begin{itemize}
+      \item \bullettext{Architecture, Configuration, Deployment, \& Documentation} 
+      \item \bullettext{Measured as a unit of time}
+    \end{itemize}
+  \end{itemize}
   
 \end{frame}
