@@ -4,11 +4,15 @@
 *.out
 *.fls
 *.gz
-*.pdf
+Thesis.pdf
+Presentation.pdf
 *.bbl
 *.blg
 *.toc
 *.lof
 *.lot
 *.bst
+*.nav 
+*.snm
 _minted-*
+.DS_Store
